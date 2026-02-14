@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTB dev. – Android Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Inter", sans-serif;
+            background: #ffffff;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid #eee;
+        }
+
+        header .brand {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        nav a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: #222;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 60px 40px;
+        }
+
+        .hero-text {
+            flex: 1 1 400px;
+        }
+
+        .hero-text h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            max-width: 520px;
+        }
+
+        .hero-img {
+            flex: 1 1 300px;
+            text-align: center;
+        }
+
+        .hero-img img {
+            max-width: 320px;
+            border-radius: 12px;
+            opacity: 0.95;
+        }
+
+        .section {
+            padding: 60px 40px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .apps-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .app-card {
+            width: 280px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .app-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            padding: 25px 40px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Responsive */
+        @media(max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .section {
+                padding: 40px 20px;
+            }
+
+            nav a {
+                margin-left: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="brand">OTB dev.</div>
+    <nav>
+        <a href="index.html">EN</a>
+        <a href="uk/index.html">UA</a>
+        <a href="apps/index.html">Apps</a>
+        <a href="#legal">Legal</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <h1>Android Developer from Ukraine</h1>
+        <p>
+            I specialize in creating modern, efficient, and user-friendly Android applications. 
+            Several lightweight apps are currently being prepared for release, and one large 
+            long-term project is in active development. Future plans include expanding to iOS.
+            <br><br>
+            Random filler text: Building intuitive interfaces, optimizing background processes, 
+            and achieving consistent performance across devices is an essential part of every project.
+        </p>
+    </div>
+
+    <div class="hero-img">
+        <img src="your-photo.jpg" alt="Developer photo">
+    </div>
+</section>
+
+<section class="section">
+    <h2>Upcoming Apps</h2>
+
+    <div class="apps-preview">
+        <div class="app-card">
+            <img src="app-preview.jpg" alt="EV Charge Pro preview">
+            <h3>EV Charge Pro</h3>
+            <p>
+                Smart assistant for electric vehicle charging. Helps optimize sessions, 
+                track energy usage, and manage costs.
+            </p>
+            <a href="apps/ev-charge-pro/index.html">Learn more →</a>
+        </div>
+
+        <div class="app-card">
+            <img src="app-preview.jpg" alt="App preview">
+            <h3>Utility Pack</h3>
+            <p>
+                A set of small but useful tools designed to simplify everyday device 
+                interactions. (Placeholder text)
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="legal">
+    <h2>Legal</h2>
+    <p>
+        This website may include general legal information about the applications developed by 
+        OTB dev. Privacy policies and terms for each app are available on their respective pages.
+        <br><br>
+        Random additional text: All rights reserved. Materials on this website may be updated 
+        progressively during active development cycles.
+    </p>
+</section>
+
+<footer>
+    © 2024–2025 OTB dev. All rights reserved.
+</footer>
+
+</body>
+</html>
