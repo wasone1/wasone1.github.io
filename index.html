@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OTB dev. – Android Developer</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -13,119 +14,110 @@
             margin: 0;
             padding: 0;
             font-family: "Inter", sans-serif;
-            background: #ffffff;
-            color: #222;
+            background: #0f1115;
+            color: #e6e6e6;
             line-height: 1.6;
         }
 
+        a { color: #3df3ff; text-decoration: none; }
+        a:hover { opacity: 0.8; }
+
+        /* HEADER */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
-            border-bottom: 1px solid #eee;
+            padding: 22px 50px;
+            background: rgba(255,255,255,0.02);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(6px);
         }
 
-        header .brand {
-            font-size: 24px;
+        .brand {
+            font-size: 26px;
             font-weight: 700;
+            letter-spacing: 1px;
+            color: #3df3ff;
+            text-shadow: 0 0 8px rgba(61,243,255,0.5);
         }
 
         nav a {
-            margin-left: 25px;
-            text-decoration: none;
-            color: #222;
+            margin-left: 30px;
             font-weight: 500;
         }
 
-        nav a:hover {
-            color: #007bff;
+        /* SECTIONS */
+        .section {
+            padding: 70px 50px;
         }
 
+        /* GLOW CARD STYLE */
+        .card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow:
+                0 0 12px rgba(61,243,255,0.12),
+                0 0 28px rgba(61,243,255,0.05);
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow:
+                0 0 18px rgba(61,243,255,0.28),
+                0 0 36px rgba(61,243,255,0.18);
+            transform: translateY(-3px);
+        }
+
+        /* HERO */
         .hero {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            padding: 60px 40px;
+            gap: 40px;
         }
 
-        .hero-text {
-            flex: 1 1 400px;
-        }
-
-        .hero-text h1 {
+        .hero h1 {
             font-size: 42px;
-            margin-bottom: 20px;
-        }
-
-        .hero-text p {
-            max-width: 520px;
-        }
-
-        .hero-img {
-            flex: 1 1 300px;
-            text-align: center;
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 0 0 12px rgba(61,243,255,0.4);
         }
 
         .hero-img img {
-            max-width: 320px;
-            border-radius: 12px;
-            opacity: 0.95;
+            width: 300px;
+            border-radius: 14px;
+            filter: drop-shadow(0 0 14px rgba(61,243,255,0.25));
         }
 
-        .section {
-            padding: 60px 40px;
-        }
-
-        .section h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
+        /* APPS */
         .apps-preview {
             display: flex;
-            flex-wrap: wrap;
             gap: 30px;
-        }
-
-        .app-card {
-            width: 280px;
-            border: 1px solid #eee;
-            border-radius: 10px;
-            padding: 20px;
+            flex-wrap: wrap;
         }
 
         .app-card img {
             width: 100%;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 0 10px rgba(61,243,255,0.25));
         }
 
         footer {
-            padding: 25px 40px;
-            border-top: 1px solid #eee;
             text-align: center;
+            padding: 30px;
+            color: #888;
             font-size: 14px;
-            color: #777;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin-top: 40px;
         }
 
         /* Responsive */
         @media(max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-
-            .hero {
-                padding: 40px 20px;
-            }
-
-            .section {
-                padding: 40px 20px;
-            }
-
-            nav a {
-                margin-left: 15px;
-            }
+            header { padding: 15px 25px; }
+            .section { padding: 40px 25px; }
         }
     </style>
 </head>
@@ -142,57 +134,54 @@
     </nav>
 </header>
 
-<section class="hero">
-    <div class="hero-text">
+<section class="section hero">
+    <div class="card" style="flex: 1 1 420px;">
         <h1>Android Developer from Ukraine</h1>
         <p>
-            I specialize in creating modern, efficient, and user-friendly Android applications. 
-            Several lightweight apps are currently being prepared for release, and one large 
-            long-term project is in active development. Future plans include expanding to iOS.
+            I specialize in modern, efficient, user-friendly Android applications.
+            Several lightweight apps are now being prepared for release, and one 
+            large long-term project is under active development. Future plans 
+            include expanding into iOS development.
             <br><br>
-            Random filler text: Building intuitive interfaces, optimizing background processes, 
-            and achieving consistent performance across devices is an essential part of every project.
+            Random filler text: Focused on clarity, background efficiency, and 
+            smooth UX across a wide range of devices. Always exploring new 
+            frameworks and improving technical workflows.
         </p>
     </div>
 
-    <div class="hero-img">
+    <div class="hero-img card" style="flex: 1 1 260px; text-align:center;">
         <img src="your-photo.jpg" alt="Developer photo">
     </div>
 </section>
 
 <section class="section">
-    <h2>Upcoming Apps</h2>
+    <h2 style="color:#3df3ff;">Upcoming Apps</h2>
 
     <div class="apps-preview">
-        <div class="app-card">
+        <div class="card app-card" style="width:280px;">
             <img src="app-preview.jpg" alt="EV Charge Pro preview">
             <h3>EV Charge Pro</h3>
             <p>
-                Smart assistant for electric vehicle charging. Helps optimize sessions, 
-                track energy usage, and manage costs.
+                Smart EV charging assistant with optimization features and session history.
             </p>
             <a href="apps/ev-charge-pro/index.html">Learn more →</a>
         </div>
 
-        <div class="app-card">
+        <div class="card app-card" style="width:280px;">
             <img src="app-preview.jpg" alt="App preview">
             <h3>Utility Pack</h3>
             <p>
-                A set of small but useful tools designed to simplify everyday device 
-                interactions. (Placeholder text)
+                A set of lightweight tools to simplify everyday tasks on Android devices.
             </p>
         </div>
     </div>
 </section>
 
-<section class="section" id="legal">
-    <h2>Legal</h2>
+<section class="section card" id="legal">
+    <h2 style="color:#3df3ff;">Legal</h2>
     <p>
-        This website may include general legal information about the applications developed by 
-        OTB dev. Privacy policies and terms for each app are available on their respective pages.
-        <br><br>
-        Random additional text: All rights reserved. Materials on this website may be updated 
-        progressively during active development cycles.
+        Each application includes its own privacy policy and terms. This website contains
+        general legal information which may be updated during development cycles.
     </p>
 </section>
 
