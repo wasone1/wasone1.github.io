@@ -3,16 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0F172A">
 <title>EV Charge Pro – OTB dev.</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../../../css/style.css">
 
 <style>
-/* Акцент конкретного застосунку */
+
+/* ===== APP THEME ===== */
 :root {
-    --accent: #00ffcc;
+    --bg: #0F172A;
+    --card-bg: rgba(255,255,255,0.05);
+    --border: rgba(255,255,255,0.08);
+    --accent: #38BDF8; /* холодний яскравий синьо-бірюзовий */
 }
+
+/* Hero gradient overlay */
+.hero-gradient {
+    background: radial-gradient(
+        circle at 20% 20%,
+        rgba(56,189,248,0.15),
+        transparent 60%
+    ),
+    radial-gradient(
+        circle at 80% 60%,
+        rgba(0,255,204,0.10),
+        transparent 60%
+    );
+    padding: 40px;
+    border-radius: 16px;
+}
+
+/* Glow underline for titles */
+h1, h2 {
+    position: relative;
+}
+
+h1::after, h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* Feature list styling */
+ul {
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+/* Stronger hover glow for this app */
+.card:hover {
+    box-shadow:
+        0 0 25px rgba(56,189,248,0.6),
+        0 0 45px rgba(56,189,248,0.35);
+}
+
 </style>
 
 </head>
@@ -27,24 +81,29 @@
     </nav>
 </header>
 
-<section class="section hero">
+<section class="section">
 
-    <div class="card" style="flex:1;">
+    <div class="hero-gradient card">
         <h1>EV Charge Pro</h1>
         <p>
-            EV Charge Pro — це розумний асистент для власників електромобілів,
-            створений для оптимізації процесу заряджання, контролю витрат
-            та аналізу споживання енергії.
+            EV Charge Pro — сучасний інструмент для оптимізації заряджання
+            електромобілів. Застосунок допомагає відстежувати сесії,
+            аналізувати витрати та ефективно керувати споживанням енергії.
         </p>
     </div>
 
-    <div class="card" style="flex:1;">
-        <h3>Основні можливості</h3>
+</section>
+
+<section class="section">
+
+    <div class="card">
+        <h2>Основні можливості</h2>
         <ul>
-            <li>Історія сесій заряджання</li>
-            <li>Оцінка та аналіз витрат</li>
+            <li>Історія зарядних сесій</li>
             <li>Аналітика споживання енергії</li>
-            <li>Рекомендації для оптимального заряджання</li>
+            <li>Оцінка та оптимізація витрат</li>
+            <li>Інтелектуальні рекомендації</li>
+            <li>Мінімалістичний та зрозумілий інтерфейс</li>
         </ul>
     </div>
 
@@ -53,12 +112,11 @@
 <section class="section">
 
     <div class="card">
-        <h2 style="color:var(--accent)">Документація</h2>
+        <h2>Документація</h2>
         <p>
-            На цій сторінці буде розміщена політика конфіденційності,
-            умови використання та додаткова інформація.
-            Також відповідні документи можуть бути доступні
-            у Google Play.
+            Політика конфіденційності, умови використання та технічна
+            документація будуть доступні на цій сторінці або через
+            Google Play.
         </p>
     </div>
 
