@@ -104,7 +104,7 @@ nav a.active::after {
 .section { padding: 80px 60px; }
 
 /* =========================
-   Cards
+   Cards Base
 ========================= */
 
 .card {
@@ -122,9 +122,10 @@ nav a.active::after {
     transform: translateY(60px) scale(0.97);
 
     transition:
-        transform 1s cubic-bezier(.19,1,.22,1),
-        opacity 1s cubic-bezier(.19,1,.22,1),
-        box-shadow 0.4s ease;
+        transform 0.6s cubic-bezier(.19,1,.22,1),
+        opacity 0.6s cubic-bezier(.19,1,.22,1),
+        box-shadow 0.4s ease,
+        border-color 0.3s ease;
 }
 
 .card.visible {
@@ -132,7 +133,8 @@ nav a.active::after {
     transform: translateY(0) scale(1);
 }
 
-.card:hover {
+/* Hover тільки для звичайних карток */
+.card:not(.app-card):hover {
     transform: translateY(-6px) scale(1.02);
     box-shadow:
         0 0 30px rgba(61,243,255,0.3),
@@ -166,32 +168,85 @@ nav a.active::after {
 ========================= */
 
 .apps-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
 }
 
-/* SaaS App Card effect */
+/* =========================
+   App Card System
+========================= */
 
 .app-card {
     overflow: hidden;
-    }
+}
 
-.app-card .app-glow {
+/* Прибрати pointer */
+.app-card { cursor: default; }
+
+/* Banner */
+
+.app-banner {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+}
+
+.app-banner img {
+    width: 100%;
+    height: 120%;
+    object-fit: cover;
+    object-position: center top;
+    transform: translateY(0);
+    transition: transform 0.7s cubic-bezier(.19,1,.22,1);
+}
+
+.app-banner::after {
+    content: "";
     position: absolute;
     inset: 0;
     background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(61,243,255,0.08),
-        transparent
+        to bottom,
+        rgba(0,0,0,0.05),
+        rgba(0,0,0,0.45)
     );
-    transform: translateX(-100%);
-    transition: transform 0.8s ease;
 }
 
-.app-card:hover .app-glow {
-    transform: translateX(100%);
+/* Hover ефект тільки для однієї картки */
+
+.app-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: var(--app-color);
+    box-shadow:
+        0 0 35px var(--app-glow),
+        0 0 70px rgba(0,0,0,0.3);
+}
+
+.app-card:hover .app-banner img {
+    transform: translateY(-10%);
+}
+
+.app-card:hover .app-link {
+    color: var(--app-color);
+}
+
+/* Soft overlay */
+
+.app-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--app-color);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+.app-card:hover::before {
+    opacity: 0.05;
 }
 
 /* =========================
@@ -235,110 +290,4 @@ body::before {
 @keyframes bgShift {
     0% { transform: translateY(0px) translateX(0px); }
     100% { transform: translateY(-20px) translateX(10px); }
-}
-
-/* =========================
-   Apps Grid – Professional Layout
-========================= */
-
-.apps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 40px;
-    margin-top: 40px;
-}
-
-/* =========================
-   App Card System
-========================= */
-
-.app-card {
-    overflow: hidden;
-    transition: all 0.45s cubic-bezier(.19,1,.22,1);
-}
-
-/* Banner strip */
-
-.app-banner {
-    position: relative;
-    height: 150px;
-    overflow: hidden;
-    border-bottom: 1px solid var(--border);
-    transition: height 0.45s cubic-bezier(.19,1,.22,1);
-}
-
-.app-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    transform: scale(0.95);
-    transition: transform 0.6s ease;
-}
-
-/* Subtle overlay */
-
-.app-banner::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.35));
-}
-
-/* Content */
-
-.app-content {
-    padding-top: 22px;
-}
-
-/* Link */
-
-.app-link {
-    display: inline-block;
-    margin-top: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-/* =========================
-   Chameleon Hover Effect
-========================= */
-
-.app-card:hover {
-    border-color: var(--app-color);
-    box-shadow:
-        0 0 35px var(--app-glow),
-        0 0 70px rgba(0,0,0,0.3);
-}
-
-/* Banner expands */
-
-.app-card:hover .app-banner {
-    height: 210px;
-}
-
-.app-card:hover .app-banner img {
-    transform: scale(1);
-}
-
-.app-card:hover .app-link {
-    color: var(--app-color);
-}
-
-/* Soft theme overlay */
-
-.app-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--app-color);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-    mix-blend-mode: overlay;
-}
-
-.app-card:hover::before {
-    opacity: 0.06;
 }
