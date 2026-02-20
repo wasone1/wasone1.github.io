@@ -175,8 +175,7 @@ nav a.active::after {
 
 .app-card {
     overflow: hidden;
-    cursor: pointer;
-}
+    }
 
 .app-card .app-glow {
     position: absolute;
@@ -244,7 +243,7 @@ body::before {
 
 .apps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 40px;
     margin-top: 40px;
 }
@@ -255,56 +254,50 @@ body::before {
 
 .app-card {
     overflow: hidden;
-    transition: all 0.4s ease;
+    transition: all 0.45s cubic-bezier(.19,1,.22,1);
 }
 
 /* Banner strip */
 
 .app-banner {
     position: relative;
-    height: 130px;
+    height: 150px;
     overflow: hidden;
     border-bottom: 1px solid var(--border);
+    transition: height 0.45s cubic-bezier(.19,1,.22,1);
 }
 
 .app-banner img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top;
+    transform: scale(0.95);
     transition: transform 0.6s ease;
 }
 
-/* Subtle dark overlay */
+/* Subtle overlay */
 
 .app-banner::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+    background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.35));
 }
 
-/* Placeholder banner */
-
-.app-banner.placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255,255,255,0.03);
-    font-weight: 600;
-    letter-spacing: 1px;
-    opacity: 0.6;
-}
-
-/* Content area */
+/* Content */
 
 .app-content {
-    padding-top: 20px;
+    padding-top: 22px;
 }
+
+/* Link */
 
 .app-link {
     display: inline-block;
-    margin-top: 14px;
+    margin-top: 16px;
     font-weight: 600;
+    cursor: pointer;
     transition: color 0.3s ease;
 }
 
@@ -319,15 +312,21 @@ body::before {
         0 0 70px rgba(0,0,0,0.3);
 }
 
+/* Banner expands */
+
+.app-card:hover .app-banner {
+    height: 210px;
+}
+
+.app-card:hover .app-banner img {
+    transform: scale(1);
+}
+
 .app-card:hover .app-link {
     color: var(--app-color);
 }
 
-.app-card:hover .app-banner img {
-    transform: scale(1.05);
-}
-
-/* Soft color overlay on hover */
+/* Soft theme overlay */
 
 .app-card::before {
     content: "";
@@ -341,5 +340,5 @@ body::before {
 }
 
 .app-card:hover::before {
-    opacity: 0.08;
+    opacity: 0.06;
 }
