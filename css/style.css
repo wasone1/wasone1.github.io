@@ -95,13 +95,13 @@ nav a {
 /* Banner wrapper */
 
 .app-banner {
-    height: 180px;
-    overflow: hidden;
     position: relative;
+    aspect-ratio: 1024 / 500;
+    overflow: hidden;
     border-bottom: 1px solid var(--border);
-
-    transition: height 0.6s cubic-bezier(.19,1,.22,1);
 }
+
+/* Image */
 
 .app-banner img {
     width: 100%;
@@ -109,8 +109,14 @@ nav a {
     object-fit: cover;
     object-position: center top;
 
-    transform: scale(1.08);
-    transition: transform 0.7s cubic-bezier(.19,1,.22,1);
+    transform: translateY(18%);
+    transition: transform 0.8s cubic-bezier(.19,1,.22,1);
+}
+
+/* Hover reveal */
+
+.app-card:hover .app-banner img {
+    transform: translateY(0%);
 }
 
 /* Placeholder */
