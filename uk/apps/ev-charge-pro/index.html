@@ -3,72 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0F172A">
-<title>EV Charge Pro – OTB dev.</title>
+<title>EV Charge Pro – Калькулятор заряджання</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
 
 <style>
 
-/* ===== APP THEME ===== */
+/* ===== App Theme ===== */
 :root {
     --bg: #0F172A;
     --card-bg: rgba(255,255,255,0.05);
     --border: rgba(255,255,255,0.08);
-    --accent: #38BDF8; /* холодний яскравий синьо-бірюзовий */
+    --accent: #38BDF8;
 }
 
-/* Hero gradient overlay */
-.hero-gradient {
-    background: radial-gradient(
-        circle at 20% 20%,
-        rgba(56,189,248,0.15),
-        transparent 60%
-    ),
-    radial-gradient(
-        circle at 80% 60%,
-        rgba(0,255,204,0.10),
-        transparent 60%
-    );
-    padding: 40px;
+.hero {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(56,189,248,0.15), transparent 60%),
+        radial-gradient(circle at 80% 60%, rgba(255,0,80,0.10), transparent 60%);
+    padding: 60px 30px;
     border-radius: 16px;
 }
 
-/* Glow underline for titles */
-h1, h2 {
-    position: relative;
+.cta-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    margin-top: 20px;
+    background: linear-gradient(90deg, #2563EB, #38BDF8);
+    border-radius: 10px;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 0 20px rgba(56,189,248,0.4);
+    transition: 0.3s ease;
 }
 
-h1::after, h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    width: 60px;
-    height: 3px;
-    background: var(--accent);
-    box-shadow: 0 0 10px var(--accent);
+.cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(56,189,248,0.6);
 }
 
-/* Feature list styling */
-ul {
-    padding-left: 20px;
+.grid-2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
 }
 
-ul li {
-    margin-bottom: 10px;
-}
-
-/* Stronger hover glow for this app */
-.card:hover {
-    box-shadow:
-        0 0 25px rgba(56,189,248,0.6),
-        0 0 45px rgba(56,189,248,0.35);
+.screenshot {
+    width: 260px;
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(56,189,248,0.25);
 }
 
 </style>
-
 </head>
 <body>
 
@@ -81,45 +67,80 @@ ul li {
     </nav>
 </header>
 
-<section class="section">
+<section class="section hero card">
+    <h1>EV Charge Pro</h1>
+    <p>
+        Точний калькулятор часу та вартості заряджання електромобілів
+        і портативних зарядних станцій.
+        Розрахунок базується на реальних технічних параметрах,
+        рівні заряду батареї та вартості електроенергії.
+    </p>
 
-    <div class="hero-gradient card">
-        <h1>EV Charge Pro</h1>
-        <p>
-            EV Charge Pro — сучасний інструмент для оптимізації заряджання
-            електромобілів. Застосунок допомагає відстежувати сесії,
-            аналізувати витрати та ефективно керувати споживанням енергії.
-        </p>
-    </div>
-
+    <a href="#" class="cta-btn">Закрите тестування – скоро реліз</a>
 </section>
 
 <section class="section">
-
     <div class="card">
-        <h2>Основні можливості</h2>
+        <h2>Що розраховує застосунок</h2>
         <ul>
-            <li>Історія зарядних сесій</li>
-            <li>Аналітика споживання енергії</li>
-            <li>Оцінка та оптимізація витрат</li>
-            <li>Інтелектуальні рекомендації</li>
-            <li>Мінімалістичний та зрозумілий інтерфейс</li>
+            <li>Час заряджання (від поточного до цільового %)</li>
+            <li>Кількість доданої енергії (kWh)</li>
+            <li>Орієнтовну вартість заряджання</li>
+            <li>Залишковий заряд батареї</li>
         </ul>
     </div>
-
 </section>
 
 <section class="section">
-
     <div class="card">
-        <h2>Документація</h2>
+        <h2>Механізм розрахунку</h2>
         <p>
-            Політика конфіденційності, умови використання та технічна
-            документація будуть доступні на цій сторінці або через
-            Google Play.
+            Алгоритм враховує заводські діапазони ємності батарей,
+            потужність зарядного пристрою, вартість електроенергії,
+            режим заряджання (мережа / сонячна панель / комбінований)
+            та коефіцієнт ефективності.
         </p>
     </div>
+</section>
 
+<section class="section">
+    <div class="card">
+        <h2>База моделей</h2>
+        <p>
+            Вбудована база марок, моделей та модифікацій
+            електромобілів і портативних станцій.
+            Список постійно розширюється на основі фідбеку
+            та оновлень застосунку.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="card">
+        <h2>Підтримка валют</h2>
+        <p>
+            Можливість вибору валюти: USD, EUR, UAH.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <h2 style="color:var(--accent)">Інтерфейс</h2>
+    <div class="grid-2">
+        <img src="/images/screen1.jpg" class="screenshot">
+        <img src="/images/screen2.jpg" class="screenshot">
+    </div>
+</section>
+
+<section class="section">
+    <div class="card">
+        <h2>Політика конфіденційності</h2>
+        <p>
+            EV Charge Pro не збирає персональні дані користувачів.
+            Детальна інформація доступна у Google Play.
+        </p>
+        <p>Email: your@email.com</p>
+    </div>
 </section>
 
 <footer>

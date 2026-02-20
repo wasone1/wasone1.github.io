@@ -1,3 +1,7 @@
+/* =========================
+   Root Variables
+========================= */
+
 :root {
     --bg: #0f1115;
     --card-bg: rgba(255,255,255,0.04);
@@ -5,6 +9,10 @@
     --accent: #3df3ff;
     --text: #e6e6e6;
 }
+
+/* =========================
+   Base
+========================= */
 
 * {
     box-sizing: border-box;
@@ -22,7 +30,16 @@ body {
 a {
     color: var(--accent);
     text-decoration: none;
+    transition: 0.25s ease;
 }
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* =========================
+   Header
+========================= */
 
 header {
     display: flex;
@@ -30,6 +47,7 @@ header {
     align-items: center;
     padding: 22px 50px;
     border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(6px);
 }
 
 .brand {
@@ -41,71 +59,13 @@ header {
 
 nav a {
     margin-left: 30px;
+    position: relative;
 }
 
-.section {
-    padding: 70px 50px;
-}
-
-.card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    padding: 30px;
-    border-radius: 14px;
-    box-shadow:
-        0 0 12px rgba(61,243,255,0.12),
-        0 0 28px rgba(61,243,255,0.05);
-    transition: 0.4s ease;
-    opacity: 0;
-    transform: translateY(40px);
-}
-
-.card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.card:hover {
-    box-shadow:
-        0 0 20px rgba(61,243,255,0.4),
-        0 0 40px rgba(61,243,255,0.25);
-    transform: translateY(-4px);
-}
-
-.hero {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-}
-
-.hero h1 {
-    font-size: 42px;
-    color: #fff;
-    text-shadow: 0 0 14px rgba(61,243,255,0.5);
-}
-
-.apps-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-footer {
-    text-align: center;
-    padding: 30px;
-    border-top: 1px solid var(--border);
-    color: #888;
-}
-
-@media(max-width:768px){
-    header { padding: 20px; }
-    .section { padding: 40px 20px; }
-}
-
+/* Active Nav */
 nav a.active {
     color: var(--accent);
     text-shadow: 0 0 10px var(--accent);
-    position: relative;
 }
 
 nav a.active::after {
@@ -117,4 +77,110 @@ nav a.active::after {
     height: 2px;
     background: var(--accent);
     box-shadow: 0 0 8px var(--accent);
+}
+
+/* =========================
+   Sections
+========================= */
+
+.section {
+    padding: 80px 60px;
+}
+
+/* =========================
+   Cards – Smooth Animation
+========================= */
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 32px;
+    border-radius: 16px;
+
+    box-shadow:
+        0 0 12px rgba(61,243,255,0.12),
+        0 0 28px rgba(61,243,255,0.05);
+
+    /* Smooth entrance animation */
+    opacity: 0;
+    transform: translateY(60px) scale(0.97);
+
+    transition:
+        transform 1s cubic-bezier(.19,1,.22,1),
+        opacity 1s cubic-bezier(.19,1,.22,1),
+        box-shadow 0.4s ease;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Hover glow */
+.card:hover {
+    box-shadow:
+        0 0 24px rgba(61,243,255,0.35),
+        0 0 50px rgba(61,243,255,0.2);
+    transform: translateY(-6px) scale(1.01);
+}
+
+/* =========================
+   Hero
+========================= */
+
+.hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 0 0 14px rgba(61,243,255,0.5);
+}
+
+/* =========================
+   Grid
+========================= */
+
+.apps-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* =========================
+   Footer
+========================= */
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid var(--border);
+    color: #888;
+    font-size: 14px;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media(max-width: 768px) {
+    header {
+        padding: 18px 20px;
+    }
+
+    .section {
+        padding: 60px 20px;
+    }
+
+    nav a {
+        margin-left: 18px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
 }
