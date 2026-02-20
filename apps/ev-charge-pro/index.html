@@ -8,8 +8,6 @@
 <link rel="stylesheet" href="/css/style.css">
 
 <style>
-
-/* App-specific theme */
 :root {
     --bg: #0F172A;
     --card-bg: rgba(255,255,255,0.05);
@@ -17,32 +15,49 @@
     --accent: #38BDF8;
 }
 
-.hero {
-    background: radial-gradient(circle at 20% 20%, rgba(56,189,248,0.15), transparent 60%),
-                radial-gradient(circle at 80% 60%, rgba(255,0,80,0.12), transparent 60%);
-    padding: 60px 20px;
-    border-radius: 16px;
+/* ===== HERO LAYOUT ===== */
+
+.hero-card {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(56,189,248,0.15), transparent 60%),
+        radial-gradient(circle at 80% 60%, rgba(255,0,80,0.12), transparent 60%);
+}
+
+.hero-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.hero-text {
+    flex: 1 1 500px;
+}
+
+.hero-text h1 {
+    font-size: 44px;
+    margin-bottom: 20px;
+}
+
+.hero-cta {
+    flex: 0 0 auto;
 }
 
 .cta-btn {
     display: inline-block;
-    padding: 14px 28px;
-    margin-top: 20px;
+    padding: 16px 34px;
     background: linear-gradient(90deg, #2563EB, #38BDF8);
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 600;
     color: white;
-    box-shadow: 0 0 20px rgba(56,189,248,0.4);
+    box-shadow: 0 0 25px rgba(56,189,248,0.4);
+    transition: all 0.3s ease;
 }
 
 .cta-btn:hover {
-    transform: translateY(-2px);
-}
-
-.screenshot {
-    width: 260px;
-    border-radius: 16px;
-    box-shadow: 0 0 25px rgba(56,189,248,0.25);
+    transform: translateY(-4px);
+    box-shadow: 0 0 40px rgba(56,189,248,0.6);
 }
 
 .grid-2 {
@@ -51,8 +66,14 @@
     gap: 30px;
 }
 
+.screenshot {
+    width: 260px;
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(56,189,248,0.25);
+}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -64,20 +85,29 @@
     </nav>
 </header>
 
-<section class="section hero card">
+<section class="section">
+    <div class="card hero-card">
+        <div class="hero-inner">
 
-    <h1>EV Charge Pro</h1>
-    <p>
-        A precision charging calculator for electric vehicles and portable power stations.
-        Estimate charging time, energy usage and total cost based on real-world parameters.
-    </p>
+            <div class="hero-text">
+                <h1>EV Charge Pro</h1>
+                <p>
+                    A precision charging calculator for electric vehicles and portable power stations.
+                    Estimate charging time, energy usage and total cost based on real-world parameters.
+                </p>
+            </div>
 
-    <a href="#" class="cta-btn">Closed Testing – Coming Soon</a>
+            <div class="hero-cta">
+                <a href="#" class="cta-btn">
+                    Closed Testing – Coming Soon
+                </a>
+            </div>
 
+        </div>
+    </div>
 </section>
 
 <section class="section">
-
     <div class="card">
         <h2>What It Calculates</h2>
         <ul>
@@ -87,11 +117,9 @@
             <li>Remaining battery reserve</li>
         </ul>
     </div>
-
 </section>
 
 <section class="section">
-
     <div class="card">
         <h2>Calculation Engine</h2>
         <p>
@@ -100,11 +128,9 @@
             to provide realistic and practical estimations.
         </p>
     </div>
-
 </section>
 
 <section class="section">
-
     <div class="card">
         <h2>Charging Modes</h2>
         <ul>
@@ -114,55 +140,6 @@
             <li>Portable station charging</li>
         </ul>
     </div>
-
-</section>
-
-<section class="section">
-
-    <div class="card">
-        <h2>Vehicle & Station Database</h2>
-        <p>
-            Built-in database of EV brands, models and modifications.
-            Portable power stations are also supported.
-            The list will expand continuously based on feedback and development roadmap.
-        </p>
-    </div>
-
-</section>
-
-<section class="section">
-
-    <div class="card">
-        <h2>Multi-Currency Support</h2>
-        <p>
-            Switch between USD, EUR and UAH depending on your region.
-        </p>
-    </div>
-
-</section>
-
-<section class="section">
-
-    <h2 style="color:var(--accent)">App Interface</h2>
-
-    <div class="grid-2">
-        <img src="/images/screen1.jpg" class="screenshot">
-        <img src="/images/screen2.jpg" class="screenshot">
-    </div>
-
-</section>
-
-<section class="section">
-
-    <div class="card">
-        <h2>Privacy & Legal</h2>
-        <p>
-            EV Charge Pro does not collect personal charging data.
-            Privacy Policy and additional documentation are available in the app listing.
-        </p>
-        <p>Contact: your@email.com</p>
-    </div>
-
 </section>
 
 <footer>

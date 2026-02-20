@@ -141,6 +141,44 @@ nav a.active::after {
     text-shadow: 0 0 14px rgba(61,243,255,0.5);
 }
 
+.hero-block {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(56,189,248,0.15), transparent 60%),
+        radial-gradient(circle at 80% 60%, rgba(255,0,80,0.10), transparent 60%);
+}
+
+.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.hero-text {
+    flex: 1 1 500px;
+}
+
+.hero-cta {
+    flex: 0 0 auto;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 16px 32px;
+    background: linear-gradient(90deg, #2563EB, #38BDF8);
+    border-radius: 12px;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 0 20px rgba(56,189,248,0.4);
+    transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 35px rgba(56,189,248,0.6);
+}
+
 /* =========================
    Grid
 ========================= */
