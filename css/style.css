@@ -175,66 +175,80 @@ nav a.active::after {
 }
 
 /* =========================
-   App Card System
+   App Card System – Pro Version
 ========================= */
 
 .app-card {
     overflow: hidden;
     cursor: default;
     transition:
-        transform 0.45s cubic-bezier(.19,1,.22,1),
+        transform 0.5s cubic-bezier(.19,1,.22,1),
         box-shadow 0.4s ease,
         border-color 0.3s ease;
 }
 
-/* --- Banner wrapper (controlled reveal) --- */
+/* ---------- Banner ---------- */
 
 .app-banner {
-    width: 100%;
-    height: 180px; /* частково видно */
+    position: relative;
+    aspect-ratio: 1024 / 500;
     overflow: hidden;
     border-bottom: 1px solid var(--border);
-    transition: height 0.6s cubic-bezier(.19,1,.22,1);
 }
 
-/* Банер 1024x500 */
+/* Банер трохи піднятий, нижня частина схована */
 
 .app-banner img {
     width: 100%;
-    display: block;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    transform: translateY(-18%);
+    transition: transform 0.8s cubic-bezier(.19,1,.22,1);
 }
 
-/* --- Hover: розкриття --- */
+/* Градієнтна маска (приховує низ) */
+
+.app-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 55%,
+        rgba(15,17,21,0.95) 100%
+    );
+    transition: opacity 0.6s ease;
+}
+
+/* ---------- Hover ---------- */
 
 .app-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px) scale(1.02);
     border-color: var(--app-color);
     box-shadow:
-        0 0 40px var(--app-glow),
-        0 0 80px rgba(0,0,0,0.4);
+        0 0 50px var(--app-glow),
+        0 0 100px rgba(0,0,0,0.5);
 }
 
-/* Розкриваємо повністю */
+/* Банер плавно опускається */
 
-.app-card:hover .app-banner {
-    height: calc(100% * 500 / 1024); /* пропорція */
-    height: 100%; /* fallback */
+.app-card:hover .app-banner img {
+    transform: translateY(0%);
 }
 
-/* Контроль через aspect ratio */
+/* Маска зникає */
 
-.app-card:hover .app-banner {
-    height: auto;
+.app-card:hover .app-banner::after {
+    opacity: 0;
 }
 
-/* --- Link hover color --- */
+/* Акцент лінка */
 
 .app-card:hover .app-link {
     color: var(--app-color);
 }
 
-/* Soft theme overlay */
+/* Легкий кольоровий overlay */
 
 .app-card::before {
     content: "";
