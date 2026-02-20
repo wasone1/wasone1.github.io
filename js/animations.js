@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cards.forEach(card => observer.observe(card));
 
+    });
+
 // Language switcher
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -27,5 +29,4 @@ document.addEventListener("DOMContentLoaded", function() {
         langSwitch.href = "/uk" + path;
     }
 
-});
 });
