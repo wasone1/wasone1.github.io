@@ -3,15 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0F172A">
-<title>EV Charge Pro – OTB dev.</title>
+<title>EV Charge Pro – Smart Charging Calculator</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
 
 <style>
 
-/* ===== APP THEME ===== */
+/* App-specific theme */
 :root {
     --bg: #0F172A;
     --card-bg: rgba(255,255,255,0.05);
@@ -19,56 +17,41 @@
     --accent: #38BDF8;
 }
 
-/* Hero gradient */
-.hero-gradient {
-    background: radial-gradient(
-        circle at 20% 20%,
-        rgba(56,189,248,0.15),
-        transparent 60%
-    ),
-    radial-gradient(
-        circle at 80% 60%,
-        rgba(0,255,204,0.10),
-        transparent 60%
-    );
-    padding: 40px;
+.hero {
+    background: radial-gradient(circle at 20% 20%, rgba(56,189,248,0.15), transparent 60%),
+                radial-gradient(circle at 80% 60%, rgba(255,0,80,0.12), transparent 60%);
+    padding: 60px 20px;
     border-radius: 16px;
 }
 
-/* Glow underline */
-h1, h2 {
-    position: relative;
+.cta-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    margin-top: 20px;
+    background: linear-gradient(90deg, #2563EB, #38BDF8);
+    border-radius: 10px;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 0 20px rgba(56,189,248,0.4);
 }
 
-h1::after, h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    width: 60px;
-    height: 3px;
-    background: var(--accent);
-    box-shadow: 0 0 10px var(--accent);
+.cta-btn:hover {
+    transform: translateY(-2px);
 }
 
-/* Feature list */
-ul {
-    padding-left: 20px;
+.screenshot {
+    width: 260px;
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(56,189,248,0.25);
 }
 
-ul li {
-    margin-bottom: 10px;
-}
-
-/* Stronger glow for app */
-.card:hover {
-    box-shadow:
-        0 0 25px rgba(56,189,248,0.6),
-        0 0 45px rgba(56,189,248,0.35);
+.grid-2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
 }
 
 </style>
-
 </head>
 <body>
 
@@ -81,29 +64,27 @@ ul li {
     </nav>
 </header>
 
-<section class="section">
+<section class="section hero card">
 
-    <div class="hero-gradient card">
-        <h1>EV Charge Pro</h1>
-        <p>
-            EV Charge Pro is a modern tool designed to optimize electric
-            vehicle charging sessions. The application helps track usage,
-            analyze energy consumption and improve charging efficiency.
-        </p>
-    </div>
+    <h1>EV Charge Pro</h1>
+    <p>
+        A precision charging calculator for electric vehicles and portable power stations.
+        Estimate charging time, energy usage and total cost based on real-world parameters.
+    </p>
+
+    <a href="#" class="cta-btn">Closed Testing – Coming Soon</a>
 
 </section>
 
 <section class="section">
 
     <div class="card">
-        <h2>Main Features</h2>
+        <h2>What It Calculates</h2>
         <ul>
-            <li>Charging session history</li>
-            <li>Energy consumption analytics</li>
-            <li>Cost estimation & optimization</li>
-            <li>Intelligent charging recommendations</li>
-            <li>Clean and minimal user interface</li>
+            <li>Charging time (based on current & target battery level)</li>
+            <li>Total energy added (kWh)</li>
+            <li>Estimated charging cost</li>
+            <li>Remaining battery reserve</li>
         </ul>
     </div>
 
@@ -112,11 +93,74 @@ ul li {
 <section class="section">
 
     <div class="card">
-        <h2>Documentation</h2>
+        <h2>Calculation Engine</h2>
         <p>
-            Privacy Policy, Terms of Use and technical documentation
-            will be available here or accessible via Google Play.
+            The algorithm uses manufacturer-based battery capacity ranges,
+            charger power limits, electricity price and charging efficiency
+            to provide realistic and practical estimations.
         </p>
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="card">
+        <h2>Charging Modes</h2>
+        <ul>
+            <li>AC Grid charging</li>
+            <li>Solar input</li>
+            <li>Combined mode</li>
+            <li>Portable station charging</li>
+        </ul>
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="card">
+        <h2>Vehicle & Station Database</h2>
+        <p>
+            Built-in database of EV brands, models and modifications.
+            Portable power stations are also supported.
+            The list will expand continuously based on feedback and development roadmap.
+        </p>
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="card">
+        <h2>Multi-Currency Support</h2>
+        <p>
+            Switch between USD, EUR and UAH depending on your region.
+        </p>
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2 style="color:var(--accent)">App Interface</h2>
+
+    <div class="grid-2">
+        <img src="/images/screen1.jpg" class="screenshot">
+        <img src="/images/screen2.jpg" class="screenshot">
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="card">
+        <h2>Privacy & Legal</h2>
+        <p>
+            EV Charge Pro does not collect personal charging data.
+            Privacy Policy and additional documentation are available in the app listing.
+        </p>
+        <p>Contact: your@email.com</p>
     </div>
 
 </section>
