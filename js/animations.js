@@ -1,43 +1,48 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // =========================
-    // Card fade-in animation
-    // =========================
+    /* =========================
+       Card Fade + Stagger
+    ========================= */
+
     const cards = document.querySelectorAll(".card");
 
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.15 });
 
-    cards.forEach(card => observer.observe(card));
+    cards.forEach((card, index) => {
+        card.style.transitionDelay = `${index * 120}ms`;
+        observer.observe(card);
+    });
 
 
-    // =========================
-    // Language switcher
-    // =========================
+    /* =========================
+       Language Switch
+    ========================= */
+
     const langSwitch = document.getElementById("lang-switch");
 
     if (langSwitch) {
         const path = window.location.pathname.replace(/\/+$/, "");
 
         if (path.startsWith("/uk")) {
-            // UA → EN
             const newPath = path.replace("/uk", "") || "/";
             langSwitch.href = newPath;
         } else {
-            // EN → UA
             langSwitch.href = "/uk" + (path === "" ? "/" : path);
         }
     }
 
 
-    // =========================
-    // Active navigation
-    // =========================
+    /* =========================
+       Active Navigation
+    ========================= */
+
     const homeLink = document.querySelector('[data-nav="home"]');
     const appsLink = document.querySelector('[data-nav="apps"]');
 

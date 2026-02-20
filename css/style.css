@@ -14,9 +14,7 @@
    Base
 ========================= */
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -33,9 +31,7 @@ a {
     transition: 0.25s ease;
 }
 
-a:hover {
-    opacity: 0.8;
-}
+a:hover { opacity: 0.85; }
 
 /* =========================
    Header
@@ -57,12 +53,34 @@ header {
     text-shadow: 0 0 12px rgba(61,243,255,0.6);
 }
 
+.dev-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    opacity: 0.7;
+    margin-top: 6px;
+}
+
+.dev-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    animation: pulseDot 3s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+    0%,100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
 nav a {
     margin-left: 30px;
     position: relative;
 }
 
-/* Active Nav */
 nav a.active {
     color: var(--accent);
     text-shadow: 0 0 10px var(--accent);
@@ -83,15 +101,14 @@ nav a.active::after {
    Sections
 ========================= */
 
-.section {
-    padding: 80px 60px;
-}
+.section { padding: 80px 60px; }
 
 /* =========================
-   Cards – Smooth Animation
+   Cards
 ========================= */
 
 .card {
+    position: relative;
     background: var(--card-bg);
     border: 1px solid var(--border);
     padding: 32px;
@@ -101,7 +118,6 @@ nav a.active::after {
         0 0 12px rgba(61,243,255,0.12),
         0 0 28px rgba(61,243,255,0.05);
 
-    /* Smooth entrance animation */
     opacity: 0;
     transform: translateY(60px) scale(0.97);
 
@@ -116,12 +132,11 @@ nav a.active::after {
     transform: translateY(0) scale(1);
 }
 
-/* Hover glow */
 .card:hover {
+    transform: translateY(-6px) scale(1.02);
     box-shadow:
-        0 0 24px rgba(61,243,255,0.35),
-        0 0 50px rgba(61,243,255,0.2);
-    transform: translateY(-6px) scale(1.01);
+        0 0 30px rgba(61,243,255,0.3),
+        0 0 60px rgba(61,243,255,0.15);
 }
 
 /* =========================
@@ -141,52 +156,43 @@ nav a.active::after {
     text-shadow: 0 0 14px rgba(61,243,255,0.5);
 }
 
-.hero-block {
+.hero-card {
     background:
-        radial-gradient(circle at 20% 20%, rgba(56,189,248,0.15), transparent 60%),
-        radial-gradient(circle at 80% 60%, rgba(255,0,80,0.10), transparent 60%);
-}
-
-.hero-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-
-.hero-text {
-    flex: 1 1 500px;
-}
-
-.hero-cta {
-    flex: 0 0 auto;
-}
-
-.cta-btn {
-    display: inline-block;
-    padding: 16px 32px;
-    background: linear-gradient(90deg, #2563EB, #38BDF8);
-    border-radius: 12px;
-    font-weight: 600;
-    color: white;
-    box-shadow: 0 0 20px rgba(56,189,248,0.4);
-    transition: all 0.3s ease;
-}
-
-.cta-btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 35px rgba(56,189,248,0.6);
+        radial-gradient(circle at 20% 20%, rgba(61,243,255,0.07), transparent 60%);
 }
 
 /* =========================
-   Grid
+   Apps Grid
 ========================= */
 
 .apps-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+}
+
+/* SaaS App Card effect */
+
+.app-card {
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.app-card .app-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(61,243,255,0.08),
+        transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.8s ease;
+}
+
+.app-card:hover .app-glow {
+    transform: translateX(100%);
 }
 
 /* =========================
@@ -205,20 +211,29 @@ footer {
    Responsive
 ========================= */
 
-@media(max-width: 768px) {
-    header {
-        padding: 18px 20px;
-    }
+@media(max-width:768px){
+    header { padding: 18px 20px; }
+    .section { padding: 60px 20px; }
+    nav a { margin-left: 18px; }
+    .hero h1 { font-size: 32px; }
+}
 
-    .section {
-        padding: 60px 20px;
-    }
+/* =========================
+   Animated Background
+========================= */
 
-    nav a {
-        margin-left: 18px;
-    }
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(61,243,255,0.08), transparent 40%),
+        radial-gradient(circle at 85% 70%, rgba(56,189,248,0.06), transparent 45%);
+    animation: bgShift 18s ease-in-out infinite alternate;
+    z-index: -1;
+}
 
-    .hero h1 {
-        font-size: 32px;
-    }
+@keyframes bgShift {
+    0% { transform: translateY(0px) translateX(0px); }
+    100% { transform: translateY(-20px) translateX(10px); }
 }

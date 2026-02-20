@@ -12,7 +12,15 @@
 <body>
 
 <header>
-    <div class="brand">OTB dev.</div>
+    <div>
+        <div class="brand">OTB dev.</div>
+        <div class="dev-badge">
+            <span>Android Developer</span>
+            <span class="dot"></span>
+            <span>EV & Energy Tools</span>
+        </div>
+    </div>
+
     <nav>
         <a href="/" data-nav="home">Home</a>
         <a href="/apps/" data-nav="apps">Apps</a>
@@ -21,7 +29,8 @@
 </header>
 
 <section class="section hero">
-    <div class="card" style="flex:1;">
+
+    <div class="card hero-card" style="flex:1;">
         <h1>Android Developer from Ukraine</h1>
         <p>
             Creating efficient, modern Android applications.
@@ -31,23 +40,33 @@
         </p>
     </div>
 
-    <div class="card" style="flex:1;">
+    <div class="card hero-card" style="flex:1;">
         <p>
             Focused on performance, UX clarity and scalable
             architecture. Constantly exploring new frameworks
             and improving workflows.
         </p>
     </div>
+
 </section>
 
 <section class="section">
     <h2 style="color:var(--accent)">Featured App</h2>
+
     <div class="apps-grid">
-        <div class="card" style="width:280px;">
+
+        <div class="card app-card" style="width:280px;">
+            <div class="app-glow"></div>
+
             <h3>EV Charge Pro</h3>
-            <p>Smart EV charging assistant with optimization and tracking features.</p>
-            <a href="apps/ev-charge-pro/index.html">Open project →</a>
+            <p>
+                Smart EV charging assistant with optimization
+                and tracking features.
+            </p>
+
+            <a href="/apps/ev-charge-pro/">Open project →</a>
         </div>
+
     </div>
 </section>
 
