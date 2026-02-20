@@ -1,5 +1,5 @@
 /* =========================
-   Root Variables
+   Root
 ========================= */
 
 :root {
@@ -22,16 +22,13 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
-    overflow-x: hidden;
 }
 
 a {
     color: var(--accent);
     text-decoration: none;
-    transition: 0.25s ease;
+    transition: 0.3s ease;
 }
-
-a:hover { opacity: 0.85; }
 
 /* =========================
    Header
@@ -43,226 +40,132 @@ header {
     align-items: center;
     padding: 22px 50px;
     border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(6px);
 }
 
 .brand {
     font-size: 26px;
     font-weight: 700;
     color: var(--accent);
-    text-shadow: 0 0 12px rgba(61,243,255,0.6);
-}
-
-.dev-badge {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 13px;
-    opacity: 0.7;
-    margin-top: 6px;
-}
-
-.dev-badge .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 10px var(--accent);
-    animation: pulseDot 3s ease-in-out infinite;
-}
-
-@keyframes pulseDot {
-    0%,100% { opacity: 0.6; }
-    50% { opacity: 1; }
 }
 
 nav a {
     margin-left: 30px;
-    position: relative;
 }
 
-nav a.active {
+/* =========================
+   Section
+========================= */
+
+.section {
+    padding: 80px 60px;
+}
+
+.section-title {
     color: var(--accent);
-    text-shadow: 0 0 10px var(--accent);
-}
-
-nav a.active::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 100%;
-    height: 2px;
-    background: var(--accent);
-    box-shadow: 0 0 8px var(--accent);
+    margin-bottom: 40px;
 }
 
 /* =========================
-   Sections
-========================= */
-
-.section { padding: 80px 60px; }
-
-/* =========================
-   Cards Base
-========================= */
-
-.card {
-    position: relative;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    padding: 32px;
-    border-radius: 16px;
-
-    box-shadow:
-        0 0 12px rgba(61,243,255,0.12),
-        0 0 28px rgba(61,243,255,0.05);
-
-    opacity: 0;
-    transform: translateY(60px) scale(0.97);
-
-    transition:
-        transform 0.6s cubic-bezier(.19,1,.22,1),
-        opacity 0.6s cubic-bezier(.19,1,.22,1),
-        box-shadow 0.4s ease,
-        border-color 0.3s ease;
-}
-
-.card.visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-
-/* Hover тільки для звичайних карток */
-.card:not(.app-card):hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow:
-        0 0 30px rgba(61,243,255,0.3),
-        0 0 60px rgba(61,243,255,0.15);
-}
-
-/* =========================
-   Hero
-========================= */
-
-.hero {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-}
-
-.hero h1 {
-    font-size: 42px;
-    margin-bottom: 20px;
-    color: #ffffff;
-    text-shadow: 0 0 14px rgba(61,243,255,0.5);
-}
-
-.hero-card {
-    background:
-        radial-gradient(circle at 20% 20%, rgba(61,243,255,0.07), transparent 60%);
-}
-
-/* =========================
-   Apps Grid
+   Grid
 ========================= */
 
 .apps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-    gap: 40px;
-    margin-top: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 50px;
 }
 
 /* =========================
-   App Card System – Pro Version
+   App Card
 ========================= */
 
 .app-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
     overflow: hidden;
-    cursor: default;
+    position: relative;
+
     transition:
-        transform 0.5s cubic-bezier(.19,1,.22,1),
+        transform 0.45s cubic-bezier(.19,1,.22,1),
         box-shadow 0.4s ease,
         border-color 0.3s ease;
 }
 
-/* ---------- Banner ---------- */
+/* =========================
+   Banner
+========================= */
 
 .app-banner {
     position: relative;
     aspect-ratio: 1024 / 500;
     overflow: hidden;
-    border-bottom: 1px solid var(--border);
+    background: #111;
 }
 
-/* Банер трохи піднятий, нижня частина схована */
+/* Placeholder */
+
+.app-banner.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #555;
+}
+
+/* Image */
 
 .app-banner img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: translateY(-18%);
-    transition: transform 0.8s cubic-bezier(.19,1,.22,1);
+
+    /* Початково частково прихований */
+    clip-path: inset(0 0 28% 0);
+
+    transition: clip-path 0.8s cubic-bezier(.19,1,.22,1);
 }
 
-/* Градієнтна маска (приховує низ) */
+/* =========================
+   Content
+========================= */
 
-.app-banner::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to bottom,
-        transparent 55%,
-        rgba(15,17,21,0.95) 100%
-    );
-    transition: opacity 0.6s ease;
+.app-content {
+    padding: 28px;
 }
 
-/* ---------- Hover ---------- */
+.app-content h3 {
+    margin-top: 0;
+}
+
+.app-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-weight: 600;
+}
+
+/* =========================
+   Hover – Only Active Card
+========================= */
 
 .app-card:hover {
     transform: translateY(-10px) scale(1.02);
     border-color: var(--app-color);
     box-shadow:
         0 0 50px var(--app-glow),
-        0 0 100px rgba(0,0,0,0.5);
+        0 0 120px rgba(0,0,0,0.6);
 }
 
-/* Банер плавно опускається */
+/* Reveal Banner */
 
 .app-card:hover .app-banner img {
-    transform: translateY(0%);
+    clip-path: inset(0 0 0 0);
 }
 
-/* Маска зникає */
-
-.app-card:hover .app-banner::after {
-    opacity: 0;
-}
-
-/* Акцент лінка */
+/* Accent */
 
 .app-card:hover .app-link {
     color: var(--app-color);
-}
-
-/* Легкий кольоровий overlay */
-
-.app-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--app-color);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-    mix-blend-mode: overlay;
-}
-
-.app-card:hover::before {
-    opacity: 0.05;
 }
 
 /* =========================
@@ -271,10 +174,9 @@ nav a.active::after {
 
 footer {
     text-align: center;
-    padding: 40px 20px;
+    padding: 40px;
     border-top: 1px solid var(--border);
     color: #888;
-    font-size: 14px;
 }
 
 /* =========================
@@ -282,28 +184,6 @@ footer {
 ========================= */
 
 @media(max-width:768px){
-    header { padding: 18px 20px; }
+    header { padding: 20px; }
     .section { padding: 60px 20px; }
-    nav a { margin-left: 18px; }
-    .hero h1 { font-size: 32px; }
-}
-
-/* =========================
-   Animated Background
-========================= */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(circle at 15% 20%, rgba(61,243,255,0.08), transparent 40%),
-        radial-gradient(circle at 85% 70%, rgba(56,189,248,0.06), transparent 45%);
-    animation: bgShift 18s ease-in-out infinite alternate;
-    z-index: -1;
-}
-
-@keyframes bgShift {
-    0% { transform: translateY(0px) translateX(0px); }
-    100% { transform: translateY(-20px) translateX(10px); }
 }
