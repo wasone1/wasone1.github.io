@@ -101,3 +101,20 @@ footer {
     header { padding: 20px; }
     .section { padding: 40px 20px; }
 }
+
+nav a.active {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent);
+    position: relative;
+}
+
+nav a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+}
