@@ -64,9 +64,10 @@ body {
 }
 
 .header-inner {
-    max-width: var(--header-container);
+    width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 80px;
 
     height: 80px;
     display: flex;
