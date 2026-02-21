@@ -97,6 +97,9 @@ header {
 }
 
 .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
     height: 80px;
     display: flex;
     justify-content: space-between;
