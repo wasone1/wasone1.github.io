@@ -1,29 +1,36 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================
-       Card Fade + Stagger
-    ========================= */
+    /* =========================================
+       Reveal Animation (IntersectionObserver)
+    ========================================= */
 
     const cards = document.querySelectorAll(".card");
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
-            }
+    if ("IntersectionObserver" in window) {
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        cards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 100}ms`;
+            observer.observe(card);
         });
-    }, { threshold: 0.15 });
 
-    cards.forEach((card, index) => {
-        card.style.transitionDelay = `${index * 120}ms`;
-        observer.observe(card);
-    });
+    } else {
+        // Fallback
+        cards.forEach(card => card.classList.add("visible"));
+    }
 
 
-    /* =========================
+    /* =========================================
        Language Switch
-    ========================= */
+    ========================================= */
 
     const langSwitch = document.getElementById("lang-switch");
 
@@ -31,31 +38,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const path = window.location.pathname.replace(/\/+$/, "");
 
         if (path.startsWith("/uk")) {
-            const newPath = path.replace("/uk", "") || "/";
-            langSwitch.href = newPath;
+            langSwitch.href = path.replace("/uk", "") || "/";
         } else {
             langSwitch.href = "/uk" + (path === "" ? "/" : path);
         }
     }
 
 
-    /* =========================
+    /* =========================================
        Active Navigation
-    ========================= */
+    ========================================= */
 
     const homeLink = document.querySelector('[data-nav="home"]');
     const appsLink = document.querySelector('[data-nav="apps"]');
 
     const cleanPath = window.location.pathname.replace(/\/+$/, "");
 
-    if (
-        cleanPath === "" ||
-        cleanPath === "/" ||
-        cleanPath === "/uk"
-    ) {
+    if (cleanPath === "" || cleanPath === "/" || cleanPath === "/uk") {
         homeLink?.classList.add("active");
-    }
-    else if (
+    } else if (
         cleanPath.startsWith("/apps") ||
         cleanPath.startsWith("/uk/apps")
     ) {

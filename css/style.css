@@ -1,6 +1,6 @@
-/* =========================
-   Root Variables
-========================= */
+/* =====================================================
+   1. DESIGN TOKENS
+===================================================== */
 
 :root {
     --bg: #0f1115;
@@ -8,13 +8,23 @@
     --border: rgba(255,255,255,0.07);
     --accent: #3df3ff;
     --text: #e6e6e6;
+
+    --radius: 16px;
+    --transition-fast: 0.25s ease;
+    --transition-smooth: 0.6s cubic-bezier(.19,1,.22,1);
+
+    /* Default app theme fallback */
+    --app-color: var(--accent);
+    --app-glow: rgba(61,243,255,0.4);
 }
 
-/* =========================
-   Base
-========================= */
+/* =====================================================
+   2. BASE
+===================================================== */
 
-* { box-sizing: border-box; }
+*,
+*::before,
+*::after { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -28,14 +38,16 @@ body {
 a {
     color: var(--accent);
     text-decoration: none;
-    transition: 0.25s ease;
+    transition: var(--transition-fast);
 }
 
 a:hover { opacity: 0.85; }
 
-/* =========================
-   Header
-========================= */
+/* =====================================================
+   3. LAYOUT
+===================================================== */
+
+.section { padding: 80px 60px; }
 
 header {
     display: flex;
@@ -46,34 +58,23 @@ header {
     backdrop-filter: blur(6px);
 }
 
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid var(--border);
+    color: #888;
+    font-size: 14px;
+}
+
+/* =====================================================
+   4. BRAND + NAV
+===================================================== */
+
 .brand {
     font-size: 26px;
     font-weight: 700;
     color: var(--accent);
     text-shadow: 0 0 12px rgba(61,243,255,0.6);
-}
-
-.dev-badge {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 13px;
-    opacity: 0.7;
-    margin-top: 6px;
-}
-
-.dev-badge .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 10px var(--accent);
-    animation: pulseDot 3s ease-in-out infinite;
-}
-
-@keyframes pulseDot {
-    0%,100% { opacity: 0.6; }
-    50% { opacity: 1; }
 }
 
 nav a {
@@ -97,53 +98,42 @@ nav a.active::after {
     box-shadow: 0 0 8px var(--accent);
 }
 
-/* =========================
-   Sections
-========================= */
-
-.section { padding: 80px 60px; }
-
-/* =========================
-   Cards Base
-========================= */
+/* =====================================================
+   5. CARD SYSTEM
+===================================================== */
 
 .card {
     position: relative;
     background: var(--card-bg);
     border: 1px solid var(--border);
     padding: 32px;
-    border-radius: 16px;
-
-    box-shadow:
-        0 0 12px rgba(61,243,255,0.12),
-        0 0 28px rgba(61,243,255,0.05);
+    border-radius: var(--radius);
 
     opacity: 0;
-    transform: translateY(60px) scale(0.97);
+    transform: translateY(50px);
 
     transition:
-        transform 0.6s cubic-bezier(.19,1,.22,1),
-        opacity 0.6s cubic-bezier(.19,1,.22,1),
+        transform var(--transition-smooth),
+        opacity var(--transition-smooth),
         box-shadow 0.4s ease,
         border-color 0.3s ease;
 }
 
 .card.visible {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
 }
 
-/* Hover тільки для звичайних карток */
 .card:not(.app-card):hover {
-    transform: translateY(-6px) scale(1.02);
+    transform: translateY(-6px);
     box-shadow:
         0 0 30px rgba(61,243,255,0.3),
         0 0 60px rgba(61,243,255,0.15);
 }
 
-/* =========================
-   Hero
-========================= */
+/* =====================================================
+   6. HERO
+===================================================== */
 
 .hero {
     display: flex;
@@ -154,76 +144,30 @@ nav a.active::after {
 .hero h1 {
     font-size: 42px;
     margin-bottom: 20px;
-    color: #ffffff;
-    text-shadow: 0 0 14px rgba(61,243,255,0.5);
+    color: #fff;
 }
 
-.hero-card {
-    background:
-        radial-gradient(circle at 20% 20%, rgba(61,243,255,0.07), transparent 60%);
-}
-
-/* =========================
-   Apps Grid
-========================= */
+/* =====================================================
+   7. APPS GRID
+===================================================== */
 
 .apps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 40px;
     margin-top: 40px;
 }
 
-/* =========================
-   App Card System
-========================= */
+/* =====================================================
+   8. APP CARD SYSTEM
+===================================================== */
 
 .app-card {
+    cursor: pointer;
     overflow: hidden;
-    cursor: default;
-    transition: transform 0.45s cubic-bezier(.19,1,.22,1),
-                box-shadow 0.4s ease,
-                border-color 0.3s ease;
 }
 
-/* --- Banner --- */
-
-.app-banner {
-    width: 100%;
-    aspect-ratio: 1024 / 500;   /* правильна пропорція */
-    overflow: hidden;
-    border-bottom: 1px solid var(--border);
-    background: #0f172a; /* fallback */
-}
-
-.app-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* НЕ обрізає */
-    display: block;
-}
-
-/* --- Content --- */
-
-.app-content {
-    padding-top: 24px;
-}
-
-/* --- Hover (тільки картка) --- */
-
-.app-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--app-color);
-    box-shadow:
-        0 0 40px var(--app-glow),
-        0 0 80px rgba(0,0,0,0.4);
-}
-
-.app-card:hover .app-link {
-    color: var(--app-color);
-}
-
-/* Soft theme overlay */
+/* Theme overlay */
 
 .app-card::before {
     content: "";
@@ -232,40 +176,34 @@ nav a.active::after {
     background: var(--app-color);
     opacity: 0;
     transition: opacity 0.4s ease;
-    pointer-events: none;
     mix-blend-mode: overlay;
+    pointer-events: none;
 }
 
 .app-card:hover::before {
-    opacity: 0.05;
+    opacity: 0.06;
 }
 
-/* =========================
-   Footer
-========================= */
-
-footer {
-    text-align: center;
-    padding: 40px 20px;
-    border-top: 1px solid var(--border);
-    color: #888;
-    font-size: 14px;
+.app-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--app-color);
+    box-shadow:
+        0 0 40px var(--app-glow),
+        0 0 80px rgba(0,0,0,0.5);
 }
 
-/* =========================
-   Responsive
-========================= */
+/* =====================================================
+   9. APP THEMES (example)
+===================================================== */
 
-@media(max-width:768px){
-    header { padding: 18px 20px; }
-    .section { padding: 60px 20px; }
-    nav a { margin-left: 18px; }
-    .hero h1 { font-size: 32px; }
+.ev-theme {
+    --app-color: #22d3ee;
+    --app-glow: rgba(34,211,238,0.45);
 }
 
-/* =========================
-   Animated Background
-========================= */
+/* =====================================================
+   10. BACKGROUND ANIMATION
+===================================================== */
 
 body::before {
     content: "";
@@ -279,6 +217,17 @@ body::before {
 }
 
 @keyframes bgShift {
-    0% { transform: translateY(0px) translateX(0px); }
-    100% { transform: translateY(-20px) translateX(10px); }
+    0% { transform: translate(0,0); }
+    100% { transform: translate(-20px,10px); }
+}
+
+/* =====================================================
+   11. RESPONSIVE
+===================================================== */
+
+@media(max-width:768px){
+    header { padding: 18px 20px; }
+    .section { padding: 60px 20px; }
+    nav a { margin-left: 18px; }
+    .hero h1 { font-size: 32px; }
 }
