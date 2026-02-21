@@ -10,49 +10,50 @@
 </head>
 <body>
 
-<header>
-    <div class="brand">OTB dev.</div>
-    <nav>
-        <a href="/" data-nav="home">Home</a>
-        <a href="/apps/" data-nav="apps">Apps</a>
-        <a id="lang-switch" href="#">UA</a>
-    </nav>
+<header class="site-header">
+    <div class="header-inner">
+        <div class="brand">OTB dev.</div>
+        <nav>
+            <a href="/" data-nav="home">Home</a>
+            <a href="/apps/" data-nav="apps">Apps</a>
+            <a id="lang-switch" href="#">UA</a>
+        </nav>
+    </div>
 </header>
 
 <section class="section">
-    <h1>Applications</h1>
+    <div class="apps-wrapper">
 
-    <div class="apps-grid">
+        <div class="apps-row">
 
-        <div class="card app-card"
-             style="--app-color:#38BDF8; --app-glow:rgba(56,189,248,0.4);">
+            <div class="app-card"
+                 style="--app-color:#38BDF8; --app-glow:rgba(56,189,248,0.4);">
 
-            <div class="app-banner">
-                <img src="/images/ev-charge-banner.png" alt="EV Charge Pro">
+                <div class="app-banner">
+                    <img src="/images/ev-charge-banner.png" alt="EV Charge Pro">
+                </div>
+
+                <div class="app-info">
+                    <h3>EV Charge Pro</h3>
+                    <p>Precision EV charging assistant.</p>
+                    <a class="app-link" href="ev-charge-pro/index.html">
+                        Open →
+                    </a>
+                </div>
+
             </div>
 
-            <h3>EV Charge Pro</h3>
-            <p>
-                Smart electric vehicle charging assistant with
-                precision tracking and optimization tools.
-            </p>
+            <div class="app-card"
+                 style="--app-color:#22d3ee; --app-glow:rgba(34,211,238,0.35);">
 
-            <a class="app-link" href="ev-charge-pro/index.html">
-                Open project →
-            </a>
+                <div class="app-banner"></div>
 
-        </div>
+                <div class="app-info">
+                    <h3>Utility Pack</h3>
+                    <p>Lightweight Android tools.</p>
+                </div>
 
-        <div class="card app-card"
-             style="--app-color:#22d3ee; --app-glow:rgba(34,211,238,0.35);">
-
-            <div class="app-banner"></div>
-
-            <h3>Utility Pack</h3>
-            <p>
-                Lightweight Android tools focused on simplicity
-                and clean user experience.
-            </p>
+            </div>
 
         </div>
 
@@ -60,7 +61,9 @@
 </section>
 
 <footer>
-© 2026 OTB dev.
+    <div class="container">
+        © 2026 OTB dev.
+    </div>
 </footer>
 
 <script src="/js/animations.js"></script>
