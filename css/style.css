@@ -203,7 +203,7 @@ nav a.active {
 }
 
 /* ================================
-   9. APPS SHOWCASE (HORIZONTAL)
+   APPS SHOWCASE — Stable Version
 ================================ */
 
 .apps-wrapper {
@@ -215,6 +215,7 @@ nav a.active {
     display: flex;
     gap: 28px;
     align-items: stretch;
+    position: relative;
 }
 
 /* Base card */
@@ -227,21 +228,26 @@ nav a.active {
     padding: 20px;
 
     transition:
-        flex 0.6s var(--ease),
+        transform 0.6s var(--ease),
         box-shadow 0.4s ease,
         border-color 0.3s ease;
+
+    transform-origin: center;
 }
 
-/* Shrink others */
+/* Smooth dim neighbors */
 
 .apps-row:hover .app-card {
-    flex: 0 0 220px;
+    opacity: 0.6;
+    transform: scale(0.95);
 }
 
-/* Expand hovered */
+/* Active card */
 
 .apps-row .app-card:hover {
-    flex: 0 0 460px;
+    opacity: 1;
+    transform: scale(1.25);
+    z-index: 5;
 }
 
 /* Banner */
@@ -271,23 +277,11 @@ nav a.active {
     object-position: center;
 }
 
-/* Hover glow */
+/* Glow */
 
 .app-card:hover {
     border-color: var(--app-color, var(--accent));
     box-shadow: 0 0 40px var(--app-glow, var(--accent-soft));
-}
-
-/* Info */
-
-.app-info h3 {
-    margin: 0 0 8px 0;
-}
-
-.app-info p {
-    margin: 0;
-    font-size: 14px;
-    color: var(--text-dim);
 }
 
 /* ================================
