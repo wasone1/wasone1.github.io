@@ -1,5 +1,5 @@
 /* =====================================================
-   OTB dev. — Layout v5 (Professional Slider Edition)
+   OTB dev. — Layout v4 (stable & smooth)
 ===================================================== */
 
 /* ================================
@@ -66,6 +66,7 @@ body {
     max-width: var(--header-container);
     margin: 0 auto;
     padding: 0 80px;
+
     height: 80px;
     display: flex;
     justify-content: space-between;
@@ -118,41 +119,116 @@ nav a.active {
     padding: 80px 0;
 }
 
+.stack > * + * {
+    margin-top: 24px;
+}
+
 /* ================================
-   6. PRO SLIDER
+   6. HERO
 ================================ */
 
-.apps-slider {
-    position: relative;
+.hero {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
 }
 
-.apps-viewport {
-    overflow: hidden;
-    width: 100%;
+.hero h1 {
+    font-size: 52px;
+    line-height: 1.15;
 }
 
-.apps-track {
+.hero p {
+    font-size: 18px;
+    color: var(--text-dim);
+}
+
+/* ================================
+   7. MAIN LAYOUT
+================================ */
+
+.layout-main {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.side-stack {
     display: flex;
-    align-items: center;
-    gap: 40px;
-    transition: transform 0.5s var(--ease);
-    will-change: transform;
+    flex-direction: column;
+    gap: 32px;
+}
+
+@media (max-width: 900px) {
+    .layout-main {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ================================
+   8. CARD SYSTEM
+================================ */
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
+
+    opacity: 0;
+    transform: translateY(24px);
+
+    transition:
+        opacity 0.7s var(--ease),
+        transform 0.7s var(--ease),
+        box-shadow 0.4s ease;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px var(--accent-soft);
+}
+
+/* ================================
+   APPS SHOWCASE v5 (Stable Expand)
+================================ */
+
+.apps-wrapper {
+    overflow: hidden;
+    padding: 0 5vw;
+}
+
+.apps-row {
+    display: flex;
+    gap: 28px;
+    align-items: stretch;
 }
 
 /* Base card */
 
 .app-card {
-    flex: 0 0 260px;
+    position: relative;
+
+    width: 260px;
     height: 380px;
+
     border-radius: var(--radius);
     overflow: hidden;
-    position: relative;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
+    cursor: pointer;
+
     transition:
         width 0.5s var(--ease),
         box-shadow 0.4s ease,
         border-color 0.3s ease;
+
+    border: 1px solid var(--border);
+    background: var(--card-bg);
 }
 
 /* Expanded */
@@ -166,7 +242,7 @@ nav a.active {
 .app-bg {
     position: absolute;
     inset: 0;
-    background: var(--bg-soft) center / cover no-repeat;
+    background: var(--bg-soft) center center / cover no-repeat;
     transition: transform 0.6s var(--ease);
 }
 
@@ -174,7 +250,7 @@ nav a.active {
     transform: scale(1.05);
 }
 
-/* Overlay */
+/* Overlay gradient */
 
 .app-overlay {
     position: absolute;
@@ -189,8 +265,9 @@ nav a.active {
     bottom: 0;
     padding: 24px;
     color: #fff;
+
     transform: translateY(60%);
-    transition: transform 0.4s var(--ease);
+    transition: transform 0.5s var(--ease);
 }
 
 .app-card.active .app-content {
@@ -215,6 +292,77 @@ nav a.active {
     box-shadow: 0 0 40px var(--app-glow);
 }
 
+/* Responsive */
+
+@media (max-width: 900px) {
+
+    .apps-row {
+        flex-direction: column;
+    }
+
+    .app-card,
+    .app-card.active {
+        width: 100%;
+    }
+}
+
+/* ================================
+   10. FOOTER
+================================ */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 80px 0;
+    text-align: center;
+    color: var(--text-dim);
+}
+
+/* ================================
+   11. RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+    .section {
+        padding: 90px 0;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .apps-row {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .app-card {
+        flex: unset;
+    }
+}
+
+/* ================================
+   SCROLL SYSTEM
+================================ */
+
+.apps-row {
+    display: flex;
+    gap: 28px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 20px;
+}
+
+.apps-row::-webkit-scrollbar {
+    display: none;
+}
+
+.app-card {
+    scroll-snap-align: center;
+    flex: 0 0 260px;
+}
+
 /* ================================
    DOTS
 ================================ */
@@ -223,7 +371,7 @@ nav a.active {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .apps-dots button {
@@ -239,15 +387,4 @@ nav a.active {
 .apps-dots button.active {
     background: var(--accent);
     box-shadow: 0 0 10px var(--accent);
-}
-
-/* ================================
-   FOOTER
-================================ */
-
-footer {
-    border-top: 1px solid var(--border);
-    padding: 80px 0;
-    text-align: center;
-    color: var(--text-dim);
 }
