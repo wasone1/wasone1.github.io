@@ -92,3 +92,78 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+/* =========================
+   Drag Scroll + Dots
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const row = document.getElementById("appsRow");
+    const cards = document.querySelectorAll(".app-card");
+    const dotsContainer = document.getElementById("appsDots");
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    // Drag
+    row.addEventListener("mousedown", (e) => {
+        isDown = true;
+        row.classList.add("dragging");
+        startX = e.pageX - row.offsetLeft;
+        scrollLeft = row.scrollLeft;
+    });
+
+    row.addEventListener("mouseleave", () => isDown = false);
+    row.addEventListener("mouseup", () => isDown = false);
+
+    row.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - row.offsetLeft;
+        const walk = (x - startX) * 1.2;
+        row.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch
+    row.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].pageX;
+        scrollLeft = row.scrollLeft;
+    });
+
+    row.addEventListener("touchmove", (e) => {
+        const x = e.touches[0].pageX;
+        const walk = (x - startX) * 1.2;
+        row.scrollLeft = scrollLeft - walk;
+    });
+
+    // Dots
+    cards.forEach((_, i) => {
+        const btn = document.createElement("button");
+        if (i === 0) btn.classList.add("active");
+        btn.addEventListener("click", () => {
+            cards[i].scrollIntoView({ behavior: "smooth", inline: "center" });
+        });
+        dotsContainer.appendChild(btn);
+    });
+
+    // Update active dot on scroll
+    row.addEventListener("scroll", () => {
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+
+        cards.forEach((card, i) => {
+            const rect = card.getBoundingClientRect();
+            const distance = Math.abs(window.innerWidth / 2 - rect.left - rect.width / 2);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestIndex = i;
+            }
+        });
+
+        dotsContainer.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+        dotsContainer.children[closestIndex].classList.add("active");
+    });
+
+});

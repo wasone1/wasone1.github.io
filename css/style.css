@@ -340,3 +340,51 @@ footer {
         flex: unset;
     }
 }
+
+/* ================================
+   SCROLL SYSTEM
+================================ */
+
+.apps-row {
+    display: flex;
+    gap: 28px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 20px;
+}
+
+.apps-row::-webkit-scrollbar {
+    display: none;
+}
+
+.app-card {
+    scroll-snap-align: center;
+    flex: 0 0 260px;
+}
+
+/* ================================
+   DOTS
+================================ */
+
+.apps-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.apps-dots button {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.apps-dots button.active {
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+}
