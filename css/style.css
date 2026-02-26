@@ -1,5 +1,5 @@
 /* =====================================================
-   OTB dev. — Layout v4.1 (Stable Scroll Slider)
+   OTB dev. — Layout v4 (stable & smooth)
 ===================================================== */
 
 /* ================================
@@ -66,6 +66,7 @@ body {
     max-width: var(--header-container);
     margin: 0 auto;
     padding: 0 80px;
+
     height: 80px;
     display: flex;
     justify-content: space-between;
@@ -114,8 +115,59 @@ nav a.active {
     padding: 120px 0;
 }
 
+.section-sm {
+    padding: 80px 0;
+}
+
+.stack > * + * {
+    margin-top: 24px;
+}
+
 /* ================================
-   6. CARD SYSTEM
+   6. HERO
+================================ */
+
+.hero {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 52px;
+    line-height: 1.15;
+}
+
+.hero p {
+    font-size: 18px;
+    color: var(--text-dim);
+}
+
+/* ================================
+   7. MAIN LAYOUT
+================================ */
+
+.layout-main {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.side-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+@media (max-width: 900px) {
+    .layout-main {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ================================
+   8. CARD SYSTEM
 ================================ */
 
 .card {
@@ -123,8 +175,10 @@ nav a.active {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 40px;
+
     opacity: 0;
     transform: translateY(24px);
+
     transition:
         opacity 0.7s var(--ease),
         transform 0.7s var(--ease),
@@ -136,54 +190,51 @@ nav a.active {
     transform: translateY(0);
 }
 
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px var(--accent-soft);
+}
+
 /* ================================
-   APPS SCROLL SLIDER
+   APPS SHOWCASE v5 (Stable Expand)
 ================================ */
 
 .apps-wrapper {
+    overflow: hidden;
     padding: 0 5vw;
 }
 
 .apps-row {
     display: flex;
     gap: 28px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding-bottom: 20px;
-    cursor: grab;
-    user-select: none;
+    align-items: stretch;
 }
 
-.apps-row.dragging {
-    cursor: grabbing;
-}
-
-.apps-row::-webkit-scrollbar {
-    display: none;
-}
-
-/* Card */
+/* Base card */
 
 .app-card {
-    flex: 0 0 260px;
-    height: 380px;
     position: relative;
+
+    width: 260px;
+    height: 380px;
+
     border-radius: var(--radius);
     overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--card-bg);
-    scroll-snap-align: center;
+    cursor: pointer;
+
     transition:
         width 0.5s var(--ease),
         box-shadow 0.4s ease,
         border-color 0.3s ease;
+
+    border: 1px solid var(--border);
+    background: var(--card-bg);
 }
 
 /* Expanded */
 
 .app-card.active {
-    flex: 0 0 460px;
+    width: 460px;
 }
 
 /* Background */
@@ -191,7 +242,7 @@ nav a.active {
 .app-bg {
     position: absolute;
     inset: 0;
-    background: var(--bg-soft) center / cover no-repeat;
+    background: var(--bg-soft) center center / cover no-repeat;
     transition: transform 0.6s var(--ease);
 }
 
@@ -199,7 +250,7 @@ nav a.active {
     transform: scale(1.05);
 }
 
-/* Overlay */
+/* Overlay gradient */
 
 .app-overlay {
     position: absolute;
@@ -214,8 +265,9 @@ nav a.active {
     bottom: 0;
     padding: 24px;
     color: #fff;
+
     transform: translateY(60%);
-    transition: transform 0.4s var(--ease);
+    transition: transform 0.5s var(--ease);
 }
 
 .app-card.active .app-content {
@@ -240,7 +292,80 @@ nav a.active {
     box-shadow: 0 0 40px var(--app-glow);
 }
 
-/* Dots */
+/* Responsive */
+
+@media (max-width: 900px) {
+
+    .apps-row {
+        flex-direction: column;
+    }
+
+    .app-card,
+    .app-card.active {
+        width: 100%;
+    }
+}
+
+/* ================================
+   10. FOOTER
+================================ */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 80px 0;
+    text-align: center;
+    color: var(--text-dim);
+}
+
+/* ================================
+   11. RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+    .section {
+        padding: 90px 0;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .apps-row {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .app-card {
+        flex: unset;
+    }
+}
+
+/* ================================
+   SCROLL SYSTEM
+================================ */
+
+.apps-row {
+    display: flex;
+    gap: 28px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 20px;
+}
+
+.apps-row::-webkit-scrollbar {
+    display: none;
+}
+
+.app-card {
+    scroll-snap-align: center;
+    flex: 0 0 260px;
+}
+
+/* ================================
+   DOTS
+================================ */
 
 .apps-dots {
     display: flex;
