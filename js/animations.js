@@ -1,13 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================
-       Reveal Animation (IntersectionObserver)
+       Reveal Animation
     ========================================= */
 
-    const cards = document.querySelectorAll(".card");
+    const revealCards = document.querySelectorAll(".card");
 
     if ("IntersectionObserver" in window) {
-
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -17,26 +16,21 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }, { threshold: 0.15 });
 
-        cards.forEach((card, index) => {
+        revealCards.forEach((card, index) => {
             card.style.transitionDelay = `${index * 100}ms`;
             observer.observe(card);
         });
-
     } else {
-        // Fallback
-        cards.forEach(card => card.classList.add("visible"));
+        revealCards.forEach(card => card.classList.add("visible"));
     }
-
 
     /* =========================================
        Language Switch
     ========================================= */
 
     const langSwitch = document.getElementById("lang-switch");
-
     if (langSwitch) {
         const path = window.location.pathname.replace(/\/+$/, "");
-
         if (path.startsWith("/uk")) {
             langSwitch.href = path.replace("/uk", "") || "/";
         } else {
@@ -44,14 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
     /* =========================================
        Active Navigation
     ========================================= */
 
     const homeLink = document.querySelector('[data-nav="home"]');
     const appsLink = document.querySelector('[data-nav="apps"]');
-
     const cleanPath = window.location.pathname.replace(/\/+$/, "");
 
     if (cleanPath === "" || cleanPath === "/" || cleanPath === "/uk") {
@@ -63,51 +55,41 @@ document.addEventListener("DOMContentLoaded", () => {
         appsLink?.classList.add("active");
     }
 
-});
-
-/* =========================
-   Apps Expand Logic
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const cards = document.querySelectorAll(".app-card");
-
-    const isDesktop = window.matchMedia("(hover: hover)").matches;
-
-    cards.forEach(card => {
-
-        if (isDesktop) {
-            card.addEventListener("mouseenter", () => {
-                cards.forEach(c => c.classList.remove("active"));
-                card.classList.add("active");
-            });
-        }
-
-        card.addEventListener("click", () => {
-            cards.forEach(c => c.classList.remove("active"));
-            card.classList.add("active");
-        });
-
-    });
-
-});
-
-/* =========================
-   Drag Scroll + Dots
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
+    /* =========================================
+       Apps Scroll Logic
+    ========================================= */
 
     const row = document.getElementById("appsRow");
-    const cards = document.querySelectorAll(".app-card");
+    if (!row) return;
+
+    const cards = Array.from(row.querySelectorAll(".app-card"));
     const dotsContainer = document.getElementById("appsDots");
+
+    /* Expand logic */
+
+    function setActive(card) {
+        cards.forEach(c => c.classList.remove("active"));
+        card.classList.add("active");
+    }
+
+    cards.forEach(card => {
+        card.addEventListener("mouseenter", () => {
+            if (window.matchMedia("(hover: hover)").matches) {
+                setActive(card);
+            }
+        });
+
+        card.addEventListener("click", () => {
+            setActive(card);
+        });
+    });
+
+    /* Drag scroll */
 
     let isDown = false;
     let startX;
     let scrollLeft;
 
-    // Drag
     row.addEventListener("mousedown", (e) => {
         isDown = true;
         row.classList.add("dragging");
@@ -115,8 +97,10 @@ document.addEventListener("DOMContentLoaded", function () {
         scrollLeft = row.scrollLeft;
     });
 
-    row.addEventListener("mouseleave", () => isDown = false);
-    row.addEventListener("mouseup", () => isDown = false);
+    window.addEventListener("mouseup", () => {
+        isDown = false;
+        row.classList.remove("dragging");
+    });
 
     row.addEventListener("mousemove", (e) => {
         if (!isDown) return;
@@ -126,7 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
         row.scrollLeft = scrollLeft - walk;
     });
 
-    // Touch
+    /* Touch */
+
     row.addEventListener("touchstart", (e) => {
         startX = e.touches[0].pageX;
         scrollLeft = row.scrollLeft;
@@ -138,18 +123,23 @@ document.addEventListener("DOMContentLoaded", function () {
         row.scrollLeft = scrollLeft - walk;
     });
 
-    // Dots
-    cards.forEach((_, i) => {
+    /* Dots */
+
+    cards.forEach((card, i) => {
         const btn = document.createElement("button");
         if (i === 0) btn.classList.add("active");
+
         btn.addEventListener("click", () => {
-            cards[i].scrollIntoView({ behavior: "smooth", inline: "center" });
+            card.scrollIntoView({ behavior: "smooth", inline: "center" });
         });
+
         dotsContainer.appendChild(btn);
     });
 
-    // Update active dot on scroll
+    /* Update dots */
+
     row.addEventListener("scroll", () => {
+
         let closestIndex = 0;
         let closestDistance = Infinity;
 
@@ -163,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         dotsContainer.querySelectorAll("button").forEach(b => b.classList.remove("active"));
-        dotsContainer.children[closestIndex].classList.add("active");
+        dotsContainer.children[closestIndex]?.classList.add("active");
     });
 
 });
