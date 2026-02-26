@@ -1,5 +1,5 @@
 /* =====================================================
-   OTB dev. — Layout v3 (clean structure)
+   OTB dev. — Layout v4 (stable & smooth)
 ===================================================== */
 
 /* ================================
@@ -20,11 +20,10 @@
     --card-bg: rgba(255,255,255,0.03);
 
     --radius: 18px;
-
     --ease: cubic-bezier(.16,1,.3,1);
 
     --container: 1100px;
-    --header-container: 1280px;
+    --header-container: 1600px;
 }
 
 /* ================================
@@ -56,7 +55,7 @@ body {
 }
 
 /* ================================
-   4. HEADER (FIXED SYMMETRY)
+   4. HEADER
 ================================ */
 
 .site-header {
@@ -64,8 +63,7 @@ body {
 }
 
 .header-inner {
-    width: 100%;
-    max-width: 1600px;
+    max-width: var(--header-container);
     margin: 0 auto;
     padding: 0 80px;
 
@@ -74,8 +72,6 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-
-/* Brand */
 
 .brand {
     font-size: 28px;
@@ -93,8 +89,6 @@ body {
     filter: blur(20px);
     z-index: -1;
 }
-
-/* Navigation */
 
 nav {
     display: flex;
@@ -150,7 +144,7 @@ nav a.active {
 }
 
 /* ================================
-   7. MAIN LAYOUT (ASYMMETRIC)
+   7. MAIN LAYOUT
 ================================ */
 
 .layout-main {
@@ -188,8 +182,7 @@ nav a.active {
     transition:
         opacity 0.7s var(--ease),
         transform 0.7s var(--ease),
-        box-shadow 0.4s ease,
-        border-color 0.3s ease;
+        box-shadow 0.4s ease;
 }
 
 .card.visible {
@@ -203,7 +196,7 @@ nav a.active {
 }
 
 /* ================================
-   APPS SHOWCASE — Stable Version
+   9. APPS SHOWCASE (NO LAYOUT SHIFT)
 ================================ */
 
 .apps-wrapper {
@@ -215,7 +208,9 @@ nav a.active {
     display: flex;
     gap: 28px;
     align-items: stretch;
-    position: relative;
+
+    /* Фіксована висота блоку */
+    min-height: 360px;
 }
 
 /* Base card */
@@ -227,27 +222,23 @@ nav a.active {
     border-radius: var(--radius);
     padding: 20px;
 
-    transition:
-        transform 0.6s var(--ease),
-        box-shadow 0.4s ease,
-        border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
 
-    transform-origin: center;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.4s ease;
 }
 
-/* Smooth dim neighbors */
+/* Ніякого scale всієї картки */
 
 .apps-row:hover .app-card {
     opacity: 0.6;
-    transform: scale(0.95);
+    transition: opacity 0.3s ease;
 }
-
-/* Active card */
 
 .apps-row .app-card:hover {
     opacity: 1;
-    transform: scale(1.25);
-    z-index: 5;
 }
 
 /* Banner */
@@ -272,8 +263,10 @@ nav a.active {
         object-position 0.6s ease;
 }
 
+/* Розширення тільки банера */
+
 .app-card:hover .app-banner img {
-    transform: scale(1.05);
+    transform: scale(1.08);
     object-position: center;
 }
 
@@ -282,6 +275,18 @@ nav a.active {
 .app-card:hover {
     border-color: var(--app-color, var(--accent));
     box-shadow: 0 0 40px var(--app-glow, var(--accent-soft));
+}
+
+/* Info */
+
+.app-info h3 {
+    margin: 0 0 8px 0;
+}
+
+.app-info p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-dim);
 }
 
 /* ================================
@@ -311,11 +316,10 @@ footer {
 
     .apps-row {
         flex-direction: column;
+        min-height: auto;
     }
 
-    .app-card,
-    .apps-row:hover .app-card,
-    .apps-row .app-card:hover {
+    .app-card {
         flex: unset;
     }
 }
