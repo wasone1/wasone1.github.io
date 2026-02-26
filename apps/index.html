@@ -22,33 +22,37 @@
 </header>
 
 <section class="section">
-    <div class="apps-wrapper">
-        <div class="apps-row" id="appsRow">
+    <div class="apps-slider">
 
-            <!-- 1 -->
-            <div class="app-card active" style="--app-color:#38BDF8; --app-glow:rgba(56,189,248,0.35);">
-                <div class="app-bg" style="background-image:url('/images/ev-charge-banner.png');"></div>
-                <div class="app-overlay"></div>
-                <div class="app-content">
-                    <h3>EV Charge Pro</h3>
-                    <p>Precision EV charging assistant.</p>
+        <div class="apps-viewport">
+            <div class="apps-track" id="appsTrack">
+
+                <!-- Карточки (БЕЗ active) -->
+                <div class="app-card" style="--app-color:#38BDF8; --app-glow:rgba(56,189,248,0.35);">
+                    <div class="app-bg" style="background-image:url('/images/ev-charge-banner.png');"></div>
+                    <div class="app-overlay"></div>
+                    <div class="app-content">
+                        <h3>EV Charge Pro</h3>
+                        <p>Precision EV charging assistant.</p>
+                    </div>
                 </div>
+
+                <!-- Дублюй ще 9 таких -->
+                <div class="app-card" style="--app-color:#8b5cf6; --app-glow:rgba(139,92,246,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Vision Tracker</h3><p>AI monitoring.</p></div></div>
+                <div class="app-card" style="--app-color:#f59e0b; --app-glow:rgba(245,158,11,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Energy Metrics</h3><p>Analytics tool.</p></div></div>
+                <div class="app-card" style="--app-color:#10b981; --app-glow:rgba(16,185,129,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Device Sync</h3><p>Integration.</p></div></div>
+                <div class="app-card" style="--app-color:#ef4444; --app-glow:rgba(239,68,68,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Performance Lab</h3><p>Benchmark suite.</p></div></div>
+                <div class="app-card" style="--app-color:#06b6d4; --app-glow:rgba(6,182,212,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Neon Core</h3><p>UI concept.</p></div></div>
+                <div class="app-card" style="--app-color:#a855f7; --app-glow:rgba(168,85,247,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Data Grid</h3><p>Engine.</p></div></div>
+                <div class="app-card" style="--app-color:#22c55e; --app-glow:rgba(34,197,94,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Smart Tools</h3><p>Utilities.</p></div></div>
+                <div class="app-card" style="--app-color:#eab308; --app-glow:rgba(234,179,8,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Battery AI</h3><p>Energy logic.</p></div></div>
+                <div class="app-card" style="--app-color:#f43f5e; --app-glow:rgba(244,63,94,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>RenderX</h3><p>Graphics lab.</p></div></div>
+
             </div>
-
-            <!-- 2-10 Mock -->
-            <div class="app-card" style="--app-color:#8b5cf6; --app-glow:rgba(139,92,246,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Vision Tracker</h3><p>AI monitoring prototype.</p></div></div>
-            <div class="app-card" style="--app-color:#f59e0b; --app-glow:rgba(245,158,11,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Energy Metrics</h3><p>Analytics tool.</p></div></div>
-            <div class="app-card" style="--app-color:#10b981; --app-glow:rgba(16,185,129,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Device Sync</h3><p>Multi-device system.</p></div></div>
-            <div class="app-card" style="--app-color:#ef4444; --app-glow:rgba(239,68,68,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Performance Lab</h3><p>Optimization suite.</p></div></div>
-            <div class="app-card" style="--app-color:#06b6d4; --app-glow:rgba(6,182,212,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Neon Core</h3><p>UI concept.</p></div></div>
-            <div class="app-card" style="--app-color:#a855f7; --app-glow:rgba(168,85,247,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Data Grid</h3><p>Structured engine.</p></div></div>
-            <div class="app-card" style="--app-color:#22c55e; --app-glow:rgba(34,197,94,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Smart Tools</h3><p>Utility bundle.</p></div></div>
-            <div class="app-card" style="--app-color:#eab308; --app-glow:rgba(234,179,8,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>Battery AI</h3><p>Energy intelligence.</p></div></div>
-            <div class="app-card" style="--app-color:#f43f5e; --app-glow:rgba(244,63,94,0.35);"><div class="app-bg"></div><div class="app-overlay"></div><div class="app-content"><h3>RenderX</h3><p>Graphics experiment.</p></div></div>
-
         </div>
 
         <div class="apps-dots" id="appsDots"></div>
+
     </div>
 </section>
 
