@@ -64,3 +64,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+/* =========================
+   Apps Expand Logic
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const cards = document.querySelectorAll(".app-card");
+
+    const isDesktop = window.matchMedia("(hover: hover)").matches;
+
+    cards.forEach(card => {
+
+        if (isDesktop) {
+            card.addEventListener("mouseenter", () => {
+                cards.forEach(c => c.classList.remove("active"));
+                card.classList.add("active");
+            });
+        }
+
+        card.addEventListener("click", () => {
+            cards.forEach(c => c.classList.remove("active"));
+            card.classList.add("active");
+        });
+
+    });
+
+});
