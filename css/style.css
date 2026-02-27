@@ -1,5 +1,5 @@
 /* =====================================================
-   OTB dev. — Layout v5 (Controlled Carousel)
+   OTB dev. — Layout v4 (stable & smooth)
 ===================================================== */
 
 /* ================================
@@ -66,6 +66,7 @@ body {
     max-width: var(--header-container);
     margin: 0 auto;
     padding: 0 80px;
+
     height: 80px;
     display: flex;
     justify-content: space-between;
@@ -114,6 +115,14 @@ nav a.active {
     padding: 120px 0;
 }
 
+.section-sm {
+    padding: 80px 0;
+}
+
+.stack > * + * {
+    margin-top: 24px;
+}
+
 /* ================================
    6. HERO
 ================================ */
@@ -135,7 +144,30 @@ nav a.active {
 }
 
 /* ================================
-   7. CARD SYSTEM
+   7. MAIN LAYOUT
+================================ */
+
+.layout-main {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.side-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+@media (max-width: 900px) {
+    .layout-main {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ================================
+   8. CARD SYSTEM
 ================================ */
 
 .card {
@@ -164,11 +196,10 @@ nav a.active {
 }
 
 /* ================================
-   APPS CAROUSEL (NEW SYSTEM)
+   APPS SHOWCASE v5 (Stable Expand)
 ================================ */
 
 .apps-wrapper {
-    position: relative;
     overflow: hidden;
     padding: 0 5vw;
 }
@@ -176,49 +207,42 @@ nav a.active {
 .apps-row {
     display: flex;
     gap: 28px;
-    transition: transform 0.6s var(--ease);
-    will-change: transform;
+    align-items: stretch;
 }
 
-/* CARD SIZE */
+/* Base card */
 
 .app-card {
     position: relative;
-    flex: 0 0 auto;
 
-    width: clamp(260px, 18vw, 340px);
-    height: calc(clamp(260px, 18vw, 340px) * 500 / 1024);
+    width: 260px;
+    height: 380px;
 
     border-radius: var(--radius);
     overflow: hidden;
+    cursor: pointer;
+
+    transition:
+        width 0.5s var(--ease),
+        box-shadow 0.4s ease,
+        border-color 0.3s ease;
 
     border: 1px solid var(--border);
     background: var(--card-bg);
-
-    transition:
-        width 0.6s var(--ease),
-        height 0.6s var(--ease),
-        box-shadow 0.4s ease,
-        border-color 0.3s ease;
 }
 
-/* ACTIVE */
+/* Expanded */
 
 .app-card.active {
-    width: clamp(420px, 28vw, 520px);
-    height: calc(clamp(420px, 28vw, 520px) * 500 / 1024);
-
-    border-color: var(--app-color);
-    box-shadow: 0 0 40px var(--app-glow);
+    width: 460px;
 }
 
-/* BACKGROUND */
+/* Background */
 
 .app-bg {
     position: absolute;
     inset: 0;
-    background-size: cover;
-    background-position: center;
+    background: var(--bg-soft) center center / cover no-repeat;
     transition: transform 0.6s var(--ease);
 }
 
@@ -226,7 +250,7 @@ nav a.active {
     transform: scale(1.05);
 }
 
-/* OVERLAY */
+/* Overlay gradient */
 
 .app-overlay {
     position: absolute;
@@ -234,12 +258,12 @@ nav a.active {
     background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 60%);
 }
 
-/* CONTENT */
+/* Content */
 
 .app-content {
     position: absolute;
     bottom: 0;
-    padding: 20px;
+    padding: 24px;
     color: #fff;
 
     transform: translateY(60%);
@@ -261,27 +285,83 @@ nav a.active {
     opacity: 1;
 }
 
-/* ================================
-   ARROWS
-================================ */
+/* Glow */
 
-.carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 5;
-
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    background: var(--bg-soft);
-    color: var(--text);
-    cursor: pointer;
+.app-card.active {
+    border-color: var(--app-color);
+    box-shadow: 0 0 40px var(--app-glow);
 }
 
-.carousel-arrow.left { left: 20px; }
-.carousel-arrow.right { right: 20px; }
+/* Responsive */
+
+@media (max-width: 900px) {
+
+    .apps-row {
+        flex-direction: column;
+    }
+
+    .app-card,
+    .app-card.active {
+        width: 100%;
+    }
+}
+
+/* ================================
+   10. FOOTER
+================================ */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 80px 0;
+    text-align: center;
+    color: var(--text-dim);
+}
+
+/* ================================
+   11. RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+    .section {
+        padding: 90px 0;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .apps-row {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .app-card {
+        flex: unset;
+    }
+}
+
+/* ================================
+   SCROLL SYSTEM
+================================ */
+
+.apps-row {
+    display: flex;
+    gap: 28px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 20px;
+}
+
+.apps-row::-webkit-scrollbar {
+    display: none;
+}
+
+.app-card {
+    scroll-snap-align: center;
+    flex: 0 0 260px;
+}
 
 /* ================================
    DOTS
@@ -291,7 +371,7 @@ nav a.active {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .apps-dots button {
