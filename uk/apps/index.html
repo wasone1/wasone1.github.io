@@ -1,58 +1,94 @@
 <!DOCTYPE html>
 <html lang="uk">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Додатки – OTB dev.</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Додатки – OTB dev.</title>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../../css/style.css">
 </head>
+
 <body>
 
-<header>
-    <div class="brand">OTB dev.</div>
-    <nav>
-        <a href="/uk/" data-nav="home">Головна</a>
-        <a href="/uk/apps/" data-nav="apps">Додатки</a>
-        <a id="lang-switch" href="#">EN</a>
-    </nav>
-</header>
+	<header class="site-header">
+		<div class="header-inner">
+			<div class="brand">OTB dev.</div>
+			<nav>
+				<a href="../index.html" data-nav="home">Головна</a>
+				<a href="./index.html" data-nav="apps" class="active">Додатки</a>
+				<a id="lang-switch" href="../../apps/index.html">EN</a>
+			</nav>
+		</div>
+	</header>
 
-<section class="section">
-    <h1 style="color:var(--accent)">Застосунки</h1>
+	<section class="section">
+		<div class="apps-wrapper">
+			<div class="apps-row" id="appsRow">
 
-    <div class="apps-grid">
+				<div class="app-card active" style="--app-color:#38BDF8; --app-glow:rgba(56,189,248,0.4);">
+					<div class="app-bg" style="background-image:url('../../images/ev-charge-banner.png');"></div>
+					<div class="app-overlay"></div>
+					<div class="app-content">
+						<h3>EV Charge Pro</h3>
+						<p>Точний асистент зарядки електромобілів з розумним відстеженням сесій.</p>
+						<a class="app-link" href="ev-charge-pro/index.html">Відкрити проєкт →</a>
+					</div>
+				</div>
 
-        <div class="card" style="width:300px;">
-            <h3>EV Charge Pro</h3>
-            <p>
-                Розумний асистент для заряджання електромобілів.
-                Дозволяє відстежувати сесії, аналізувати споживання
-                енергії та оптимізувати витрати.
-            </p>
-            <a href="../../uk/apps/ev-charge-pro/index.html">
-                Відкрити проєкт →
-            </a>
-        </div>
+				<div class="app-card" style="--app-color:#2E8B57; --app-glow:rgba(46, 139, 87, 0.4);">
+					<div class="app-bg" style="background-color: #1a1a1a;"></div>
+					<div class="app-overlay"></div>
+					<div class="app-content">
+						<h3>Multi Timer</h3>
+						<p>Багато таймерів одночасно. Створюйте власні пресети для кухні, тренувань та продуктивності.</p>
+						<a class="app-link" href="multi-timer/index.html">Деталі →</a>
+					</div>
+				</div>
 
-        <div class="card" style="width:300px;">
-            <h3>Utility Pack</h3>
-            <p>
-                Набір легких інструментів для Android,
-                орієнтованих на швидкість роботи,
-                простоту та зручний користувацький інтерфейс.
-                (Тимчасовий опис)
-            </p>
-        </div>
+				<div class="app-card" style="--app-color:#f59e0b; --app-glow:rgba(245,158,11,0.4);">
+					<div class="app-bg" style="background-color: #2a2a2a;"></div>
+					<div class="app-overlay"></div>
+					<div class="app-content">
+						<h3>Energy Metrics</h3>
+						<p>Інструмент аналітики для візуалізації складних наборів даних енергоспоживання.</p>
+						<a class="app-link" href="#">Статистика →</a>
+					</div>
+				</div>
 
-    </div>
-</section>
+				<div class="app-card" style="--app-color:#10b981; --app-glow:rgba(16,185,129,0.4);">
+					<div class="app-bg" style="background-color: #1f1f1f;"></div>
+					<div class="app-overlay"></div>
+					<div class="app-content">
+						<h3>Device Sync</h3>
+						<p>Концепт безшовної синхронізації буфера обміну та файлів між пристроями.</p>
+						<a class="app-link" href="#">Огляд →</a>
+					</div>
+				</div>
 
-<footer>
-© 2026 OTB dev.
-</footer>
+				<div class="app-card" style="--app-color:#f43f5e; --app-glow:rgba(244,63,94,0.4);">
+					<div class="app-bg" style="background-color: #1f1f1f;"></div>
+					<div class="app-overlay"></div>
+					<div class="app-content">
+						<h3>System Core</h3>
+						<p>Модулі оптимізації рівня ядра для підвищеної стабільності системи.</p>
+						<a class="app-link" href="#">Огляд →</a>
+					</div>
+				</div>
 
-<script src="/js/animations.js"></script>
+			</div>
+
+			<div class="apps-dots" id="appsDots"></div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="container">
+			<p>© 2026 OTB dev. Всі права захищено.</p>
+		</div>
+	</footer>
+
+	<script src="../../js/animations.js"></script>
 </body>
+
 </html>

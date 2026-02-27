@@ -1,142 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Applications – OTB dev.</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Applications – OTB dev.</title>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
 
-<header class="site-header">
-    <div class="header-inner">
-        <div class="brand">OTB dev.</div>
-        <nav>
-            <a href="/" data-nav="home">Home</a>
-            <a href="/apps/" data-nav="apps">Apps</a>
-            <a id="lang-switch" href="#">UA</a>
-        </nav>
-    </div>
-</header>
+	<header class="site-header">
+		<div class="header-inner">
+			<div class="brand">OTB dev.</div>
+			<nav>
+				<a href="../index.html" data-nav="home">Home</a>
+				<a href="./index.html" data-nav="apps" class="active">Apps</a>
+				<a id="lang-switch" href="../uk/apps/index.html">UA</a>
+			</nav>
+		</div>
+	</header>
 
-<section class="section">
-    <div class="apps-wrapper">
-        <div class="apps-row" id="appsRow">
+	<section class="section">
+		<div class="apps-wrapper">
+			<div class="apps-row" id="appsRow">
 
-            <!-- 1 -->
-            <div class="app-card active"
-                 style="--app-color:#38BDF8; --app-glow:rgba(56,189,248,0.35);">
-                <div class="app-bg"
-                     style="background-image:url('/images/ev-charge-banner.png');"></div>
-                <div class="app-overlay"></div>
-                <div class="app-content">
-                    <h3>EV Charge Pro</h3>
-                    <p>Precision EV charging assistant with smart session tracking.</p>
-                    <a class="app-link" href="ev-charge-pro/index.html">Open →</a>
-                </div>
-            </div>
+				<div class="app-card active" style="--app-color:#38BDF8; --app-glow:rgba(56,189,248,0.4);">
+					<div class="app-bg" style="background-image:url('../images/ev-charge-banner.png');"></div>
+					<div class="app-overlay"></div>
+					<div class="app-content">
+						<h3>EV Charge Pro</h3>
+						<p>Precision EV charging assistant with smart session tracking.</p>
+						<a class="app-link" href="ev-charge-pro/index.html">Open Project →</a>
+					</div>
+				</div>
 
-            <!-- 2 -->
-            <div class="app-card"
-                 style="--app-color:#8b5cf6; --app-glow:rgba(139,92,246,0.35);">
-                <div class="app-bg"></div>
-                <div class="app-overlay"></div>
-                <div class="app-content">
-                    <h3>Vision Tracker</h3>
-                    <p>AI-powered monitoring prototype.</p>
-                </div>
-            </div>
+				<div class="app-card" style="--app-color:#2E8B57; --app-glow:rgba(46, 139, 87, 0.4);">
+					<div class="app-bg" style="background-color: #1a1a1a;"></div>
+					<div class="app-overlay"></div>
+					<div class="app-content">
+						<h3>Multi Timer</h3>
+						<p>Run multiple timers simultaneously. Create, name, and save your custom presets for cooking, workout, or productivity.</p>
+						<a class="app-link" href="multi-timer/index.html">Details →</a>
+					</div>
+				</div>
 
-            <!-- 3 -->
-            <div class="app-card"
-                 style="--app-color:#f59e0b; --app-glow:rgba(245,158,11,0.35);">
-                <div class="app-bg"></div>
-                <div class="app-overlay"></div>
-                <div class="app-content">
-                    <h3>Energy Metrics</h3>
-                    <p>Analytics-focused experimental tool.</p>
-                </div>
-            </div>
+				<div class="app-card" style="--app-color:#f59e0b; --app-glow:rgba(245,158,11,0.4);">
+					<div class="app-bg" style="background-color: #2a2a2a;"></div>
+					<div class="app-overlay"></div>
+					<div class="app-content">
+						<h3>Energy Metrics</h3>
+						<p>Analytics-focused experimental tool for visualizing data.</p>
+						<a class="app-link" href="#">View Stats →</a>
+					</div>
+				</div>
 
-            <!-- 4 -->
-            <div class="app-card"
-                 style="--app-color:#10b981; --app-glow:rgba(16,185,129,0.35);">
-                <div class="app-bg"></div>
-                <div class="app-overlay"></div>
-                <div class="app-content">
-                    <h3>Device Sync</h3>
-                    <p>Multi-device integration concept.</p>
-                </div>
-            </div>
+				<div class="app-card" style="--app-color:#10b981; --app-glow:rgba(16,185,129,0.4);">
+					<div class="app-bg" style="background-color: #1f1f1f;"></div>
+					<div class="app-overlay"></div>
+					<div class="app-content">
+						<h3>Device Sync</h3>
+						<p>Multi-device integration concept allowing seamless sharing.</p>
+						<a class="app-link" href="#">Explore →</a>
+					</div>
+				</div>
+				<div class="app-card" style="--app-color:#f43f5e; --app-glow:rgba(244,63,94,0.4);">
+					<div class="app-bg" style="background-color: #1f1f1f;"></div>
+					<div class="app-overlay"></div>
+					<div class="app-content">
+						<h3>System Core</h3>
+						<p>Kernel level optimization modules for enhanced stability.</p>
+						<a class="app-link" href="#">Explore →</a>
+					</div>
+				</div>
 
-            <!-- 5 -->
-            <div class="app-card"
-                 style="--app-color:#10b981; --app-glow:rgba(16,185,129,0.35);">
-                <div class="app-bg"></div>
-                <div class="app-overlay"></div>
-                <div class="app-content">
-                    <h3>Device Sync</h3>
-                    <p>Multi-device integration concept.</p>
-                </div>
-            </div>
+			</div>
 
-            <!-- 6 -->
-            <div class="app-card"
-                 style="--app-color:#10b981; --app-glow:rgba(16,185,129,0.35);">
-                <div class="app-bg"></div>
-                <div class="app-overlay"></div>
-                <div class="app-content">
-                    <h3>Device Sync</h3>
-                    <p>Multi-device integration concept.</p>
-                </div>
-            </div>
+			<div class="apps-dots" id="appsDots"></div>
+		</div>
+	</section>
 
-            <!-- 7 -->
-            <div class="app-card"
-                 style="--app-color:#10b981; --app-glow:rgba(16,185,129,0.35);">
-                <div class="app-bg"></div>
-                <div class="app-overlay"></div>
-                <div class="app-content">
-                    <h3>Device Sync</h3>
-                    <p>Multi-device integration concept.</p>
-                </div>
-            </div>
+	<footer>
+		<div class="container">
+			<p>© 2026 OTB dev. All rights reserved.</p>
+		</div>
+	</footer>
 
-            <!-- 8 -->
-            <div class="app-card"
-                 style="--app-color:#10b981; --app-glow:rgba(16,185,129,0.35);">
-                <div class="app-bg"></div>
-                <div class="app-overlay"></div>
-                <div class="app-content">
-                    <h3>Device Sync</h3>
-                    <p>Multi-device integration concept.</p>
-                </div>
-            </div>
-
-            <!-- 9 -->
-            <div class="app-card"
-                 style="--app-color:#10b981; --app-glow:rgba(16,185,129,0.35);">
-                <div class="app-bg"></div>
-                <div class="app-overlay"></div>
-                <div class="app-content">
-                    <h3>Device Sync</h3>
-                    <p>Multi-device integration concept.</p>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="apps-dots" id="appsDots"></div>
-    </div>
-</section>
-
-<footer>
-    <div class="container">
-    © 2026 OTB dev.
-    </div>
-</footer>
-
-    <script src="/js/animations.js"></script>
+	<script src="../js/animations.js"></script>
 </body>
+
+</html>

@@ -1,152 +1,222 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EV Charge Pro – Розумний калькулятор заряджання</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>EV Charge Pro – Розумний калькулятор зарядки</title>
+	<meta name="description"
+		content="Точний калькулятор зарядки для електромобілів. Розрахунок часу, вартості та збереження батареї.">
 
-<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../../../css/style.css">
 
-<style>
-:root {
-    --bg: #0F172A;
-    --card-bg: rgba(255,255,255,0.05);
-    --border: rgba(255,255,255,0.08);
-    --accent: #38BDF8;
-}
+	<style>
+		/* Ті самі стилі, що й в англійській версії */
+		body {
+			--accent: #38BDF8;
+			--accent-glow: rgba(56, 189, 248, 0.15);
+		}
 
-/* ===== HERO LAYOUT ===== */
+		.app-hero-card {
+			background: radial-gradient(circle at top, var(--accent-glow), transparent 70%);
+			border: 1px solid var(--border);
+			border-top-color: var(--accent);
+			border-radius: 24px;
+			padding: 60px 20px;
+			text-align: center;
+			margin-bottom: 60px;
+		}
 
-.hero-card {
-    background:
-        radial-gradient(circle at 20% 20%, rgba(56,189,248,0.15), transparent 60%),
-        radial-gradient(circle at 80% 60%, rgba(255,0,80,0.12), transparent 60%);
-}
+		.btn-download {
+			display: inline-flex;
+			align-items: center;
+			gap: 12px;
+			background: var(--accent);
+			color: #000;
+			padding: 18px 36px;
+			border-radius: 12px;
+			font-weight: 700;
+			text-decoration: none;
+			margin-top: 32px;
+			box-shadow: 0 0 20px var(--accent-glow);
+			transition: 0.3s ease;
+		}
 
-.hero-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 60px;
-    flex-wrap: wrap;
-}
+		.btn-download:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 0 40px var(--accent-glow);
+		}
 
-.hero-text {
-    flex: 1 1 500px;
-}
+		.gallery-scroll {
+			display: flex;
+			gap: 20px;
+			overflow-x: auto;
+			padding-bottom: 20px;
+			scroll-snap-type: x mandatory;
+			scrollbar-width: thin;
+			scrollbar-color: var(--accent) rgba(255, 255, 255, 0.05);
+		}
 
-.hero-text h1 {
-    font-size: 44px;
-    margin-bottom: 20px;
-}
+		.gallery-scroll::-webkit-scrollbar {
+			height: 8px;
+		}
 
-.hero-cta {
-    flex: 0 0 auto;
-}
+		.gallery-scroll::-webkit-scrollbar-track {
+			background: rgba(255, 255, 255, 0.05);
+			border-radius: 4px;
+		}
 
-.cta-btn {
-    display: inline-block;
-    padding: 16px 34px;
-    background: linear-gradient(90deg, #2563EB, #38BDF8);
-    border-radius: 12px;
-    font-weight: 600;
-    color: white;
-    box-shadow: 0 0 25px rgba(56,189,248,0.4);
-    transition: all 0.3s ease;
-}
+		.gallery-scroll::-webkit-scrollbar-thumb {
+			background-color: var(--accent);
+			border-radius: 4px;
+			border: 2px solid transparent;
+			background-clip: content-box;
+		}
 
-.cta-btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 40px rgba(56,189,248,0.6);
-}
+		.gallery-scroll::-webkit-scrollbar-thumb:hover {
+			background-color: #fff;
+		}
 
-.grid-2 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-}
+		.screenshot-item {
+			flex: 0 0 260px;
+			height: 550px;
+			border-radius: 16px;
+			border: 1px solid var(--border);
+			scroll-snap-align: center;
+			background-color: #1e293b;
+			object-fit: cover;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+		}
 
-.screenshot {
-    width: 260px;
-    border-radius: 16px;
-    box-shadow: 0 0 25px rgba(56,189,248,0.25);
-}
-</style>
+		.doc-item {
+			display: flex;
+			justify-content: space-between;
+			padding: 16px;
+			background: rgba(255, 255, 255, 0.03);
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			text-decoration: none;
+			color: var(--text-dim);
+			transition: 0.3s;
+			margin-bottom: 10px;
+		}
+
+		.doc-item:hover {
+			border-color: var(--accent);
+			color: #fff;
+			background: rgba(255, 255, 255, 0.05);
+		}
+	</style>
 </head>
 
 <body>
 
-<header>
-    <div class="brand">OTB dev.</div>
-    <nav>
-        <a href="/uk/" data-nav="home">Головна</a>
-        <a href="/uk/apps/" data-nav="apps">Додатки</a>
-        <a id="lang-switch" href="#">EN</a>
-    </nav>
-</header>
+	<header class="site-header">
+		<div class="header-inner">
+			<div class="brand">OTB dev.</div>
+			<nav>
+				<a href="../../index.html" data-nav="home">Головна</a>
+				<a href="../index.html" data-nav="apps" class="active">Додатки</a>
+				<a id="lang-switch" href="../../../apps/ev-charge-pro/index.html">EN</a>
+			</nav>
+		</div>
+	</header>
 
-<section class="section">
-    <div class="card hero-card">
-        <div class="hero-inner">
+	<main>
+		<section class="section-sm">
+			<div class="container">
 
-            <div class="hero-text">
-                <h1>EV Charge Pro</h1>
-                <p>
-                    Точний калькулятор заряджання для електромобілів та портативних
-                    електростанцій. Розраховуйте час заряджання, споживання енергії
-                    та загальну вартість на основі реальних параметрів.
-                </p>
-            </div>
+				<div class="app-hero-card stack">
+					<h1>EV Charge Pro</h1>
+					<p style="max-width: 600px; margin: 0 auto; color: var(--text-dim); font-size: 18px;">
+						Точний калькулятор зарядки для електромобілів та зарядних станцій.
+						Розрахунок часу, енергії та вартості на основі реальних параметрів.
+					</p>
 
-            <div class="hero-cta">
-                <a href="#" class="cta-btn">
-                    Закрите тестування – скоро запуск
-                </a>
-            </div>
+					<div>
+						<a href="#" class="btn-download">
+							Завантажити додаток
+							<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+								viewBox="0 0 24 24">
+								<path d="M12 5v14M5 12l7 7 7-7" />
+							</svg>
+						</a>
+					</div>
+				</div>
 
-        </div>
-    </div>
-</section>
+				<div class="stack" style="margin-bottom: 80px;">
+					<h2 style="text-align: center; margin-bottom: 30px;">Інтерфейс додатка</h2>
 
-<section class="section">
-    <div class="card">
-        <h2>Що розраховує застосунок</h2>
-        <ul>
-            <li>Час заряджання (на основі поточного та цільового рівня батареї)</li>
-            <li>Загальну додану енергію (kWh)</li>
-            <li>Орієнтовну вартість заряджання</li>
-            <li>Залишковий заряд батареї</li>
-        </ul>
-    </div>
-</section>
+					<div class="gallery-scroll">
+						<img src="../../../apps/ev-charge-pro/images/B1 (7).jpg" alt="Screen 1" class="screenshot-item">
+						<img src="../../../apps/ev-charge-pro/images/B1 (6).jpg" alt="Screen 2" class="screenshot-item">
+						<img src="../../../apps/ev-charge-pro/images/B1 (5).jpg" alt="Screen 3" class="screenshot-item">
+						<img src="../../../apps/ev-charge-pro/images/B1 (4).jpg" alt="Screen 4" class="screenshot-item">
+						<img src="../../../apps/ev-charge-pro/images/B1 (3).jpg" alt="Screen 5" class="screenshot-item">
+						<img src="../../../apps/ev-charge-pro/images/B1 (2).jpg" alt="Screen 6" class="screenshot-item">
+						<img src="../../../apps/ev-charge-pro/images/B1 (1).jpg" alt="Screen 7" class="screenshot-item">
+					</div>
+				</div>
 
-<section class="section">
-    <div class="card">
-        <h2>Механізм розрахунку</h2>
-        <p>
-            Алгоритм використовує заводські діапазони ємності батарей,
-            обмеження потужності зарядного пристрою, вартість електроенергії
-            та ефективність заряджання для надання реалістичних і практичних розрахунків.
-        </p>
-    </div>
-</section>
+				<div class="layout-main">
 
-<section class="section">
-    <div class="card">
-        <h2>Режими заряджання</h2>
-        <ul>
-            <li>Заряджання від мережі (AC)</li>
-            <li>Сонячне живлення</li>
-            <li>Комбінований режим</li>
-            <li>Заряджання портативних станцій</li>
-        </ul>
-    </div>
-</section>
+					<div class="card stack">
+						<h2>Можливості</h2>
+						<ul
+							style="padding-left: 20px; color: var(--text-dim); display: flex; flex-direction: column; gap: 12px;">
+							<li><strong>Журнал сесій:</strong> Автоматичне збереження історії зарядок.</li>
+							<li><strong>Калькулятор вартості:</strong> Точний розрахунок ціни на основі тарифів.</li>
+							<li><strong>Здоров'я батареї:</strong> Аналітика для подовження життя акумулятора.</li>
+							<li><strong>Експорт даних:</strong> Вивантаження у CSV для звітності.</li>
+						</ul>
 
-<footer>
-© 2026 OTB dev.
-</footer>
+						<h2 style="margin-top: 20px;">Алгоритм розрахунку</h2>
+						<p>
+							Додаток використовує паспортні дані ємності батарей, обмеження потужності зарядних
+							пристроїв,
+							актуальні тарифи та коефіцієнт ефективності (ККД) для надання реалістичних прогнозів.
+						</p>
+					</div>
 
-<script src="/js/animations.js"></script>
+					<aside class="side-stack">
+
+						<div class="card stack">
+							<h3>Юридична інформація</h3>
+							<p>Правила використання та політика конфіденційності.</p>
+
+							<div>
+								<a href="../../../apps/ev-charge-pro/privacy-policy.html" class="doc-item">
+									<span>Privacy Policy</span>
+									<span>→</span>
+								</a>
+								<a href="../../../apps/ev-charge-pro/terms.html" class="doc-item">
+									<span>Terms & Conditions</span>
+									<span>→</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="card stack">
+							<h3>Інфо</h3>
+							<p>Версія: <strong style="color: #fff;">1.0.2 (Beta)</strong></p>
+							<p>Оновлено: <strong style="color: #fff;">Лютий 2026</strong></p>
+						</div>
+
+					</aside>
+
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="container">
+			<p>© 2026 OTB dev. Всі права захищено.</p>
+		</div>
+	</footer>
+
+	<script src="../../../js/animations.js"></script>
 </body>
+
 </html>

@@ -1,74 +1,86 @@
 <!DOCTYPE html>
 <html lang="uk">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OTB dev.</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
-<link rel="alternate" hreflang="en" href="https://yourdomain/index.html">
-<link rel="alternate" hreflang="uk" href="https://yourdomain/uk/index.html">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>OTB dev. | Android Розробка</title>
+	<meta name="description"
+		content="Розробка Android-додатків з фокусом на точність, продуктивність та чисту архітектуру.">
+
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
 
-<header>
-    <div>
-        <div class="brand">OTB dev.</div>
-        <div class="dev-badge">
-            <span>Android Developer</span>
-            <span class="dot"></span>
-            <span>From Ukraine to the whole world</span>
-        </div>
-    </div>
+	<header class="site-header">
+		<div class="header-inner">
+			<div class="brand">OTB dev.</div>
+			<nav>
+				<a href="./index.html" data-nav="home" class="active">Головна</a>
+				<a href="./apps/index.html" data-nav="apps">Додатки</a>
+				<a id="lang-switch" href="../index.html">EN</a>
+			</nav>
+		</div>
+	</header>
 
-    <nav>
-        <a href="/uk/" data-nav="home">Головна</a>
-        <a href="/uk/apps/" data-nav="apps">Додатки</a>
-        <a id="lang-switch" href="#">EN</a>
-    </nav>
-</header>
+	<main>
+		<section class="section">
+			<div class="container">
+				<div class="hero card stack">
+					<h1>Android Engineering: Точність та Продуктивність</h1>
+					<p>
+						Проєктування масштабованих та ефективних Android-додатків
+						з використанням чистої архітектури та акцентом на швидкодію.
+					</p>
+				</div>
+			</div>
+		</section>
 
-<section class="section hero">
-    <div class="card" style="flex:1;">
-        <h1>Розробник Android з України</h1>
-        <p>
-            Створюю сучасні та ефективні Android-застосунки.
-            Кілька невеликих проєктів готуються до релізу,
-            а також триває розробка великого довгострокового продукту.
-            У планах — розширення на iOS.
-        </p>
-    </div>
+		<section class="section-sm">
+			<div class="container">
+				<div class="layout-main">
+					<div class="card stack">
+						<h2>Інженерна Філософія</h2>
+						<p>
+							Чиста архітектура. Передбачувана поведінка. Вимірювана продуктивність.
+							Структуровані рішення замість імпровізації.
+						</p>
+						<p>
+							Кожен проєкт розвивається через чіткість структури,
+							валідацію ефективності та патерни, що легко підтримувати.
+						</p>
+					</div>
 
-    <div class="card" style="flex:1;">
-        <p>
-            Основний фокус — продуктивність, зрозумілий UX,
-            масштабована архітектура та чистий код.
-            Постійно вдосконалюю технічні процеси та експериментую
-            з новими підходами до мобільної розробки.
-        </p>
-    </div>
-</section>
+					<aside class="side-stack">
+						<div class="card stack">
+							<h3>План розвитку</h3>
+							<p>Майбутні релізи та розширення функціоналу.</p>
+						</div>
 
-<section class="section">
-    <h2 style="color:var(--accent)">Рекомендований застосунок</h2>
+						<div class="card stack">
+							<h3>Оновлення</h3>
+							<p>Останні покращення та оптимізації коду.</p>
+						</div>
 
-    <div class="apps-grid">
-        <div class="card" style="width:280px;">
-            <h3>EV Charge Pro</h3>
-            <p>
-                Розумний асистент для заряджання електромобілів
-                з оптимізацією витрат та історією сесій.
-            </p>
-            <a href="../apps/ev-charge-pro/index.html">Відкрити проєкт →</a>
-        </div>
-    </div>
-</section>
+						<div class="card stack">
+							<h3>Наступні цілі</h3>
+							<p>Масштабування платформи та довгостроковий розвиток архітектури.</p>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</section>
+	</main>
 
-<footer>
-© 2026 OTB dev.
-</footer>
+	<footer>
+		<div class="container">
+			<p>© 2026 OTB dev. Всі права захищено.</p>
+		</div>
+	</footer>
 
-<script src="/js/animations.js"></script>
+	<script src="../js/animations.js"></script>
 </body>
+
 </html>

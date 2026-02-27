@@ -1,151 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EV Charge Pro – Smart Charging Calculator</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>EV Charge Pro – Smart Charging Calculator</title>
+	<meta name="description"
+		content="Precision charging calculator for electric vehicles. Estimate time, cost and battery health.">
 
-<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../../css/style.css">
 
-<style>
-:root {
-    --bg: #0F172A;
-    --card-bg: rgba(255,255,255,0.05);
-    --border: rgba(255,255,255,0.08);
-    --accent: #38BDF8;
-}
+	<style>
+		/* Налаштування кольорів САМЕ ДЛЯ ЦЬОГО додатка. 
+           Змінюй --accent для інших сторінок.
+        */
+		body {
+			--accent: #38BDF8;
+			/* Головний колір додатка (Блакитний) */
+			--accent-glow: rgba(56, 189, 248, 0.15);
+			/* Світіння */
+		}
 
-/* ===== HERO LAYOUT ===== */
+		/* Hero блок з фоновим світінням додатка */
+		.app-hero-card {
+			background: radial-gradient(circle at top, var(--accent-glow), transparent 70%);
+			border: 1px solid var(--border);
+			border-top-color: var(--accent);
+			/* Кольорова смужка зверху */
+			border-radius: 24px;
+			padding: 60px 20px;
+			text-align: center;
+			margin-bottom: 60px;
+		}
 
-.hero-card {
-    background:
-        radial-gradient(circle at 20% 20%, rgba(56,189,248,0.15), transparent 60%),
-        radial-gradient(circle at 80% 60%, rgba(255,0,80,0.12), transparent 60%);
-}
+		/* Кнопка завантаження в колір додатка */
+		.btn-download {
+			display: inline-flex;
+			align-items: center;
+			gap: 12px;
+			background: var(--accent);
+			color: #000;
+			/* Чорний текст для контрасту */
+			padding: 18px 36px;
+			border-radius: 12px;
+			font-weight: 700;
+			text-decoration: none;
+			margin-top: 32px;
+			box-shadow: 0 0 20px var(--accent-glow);
+			transition: 0.3s ease;
+		}
 
-.hero-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 60px;
-    flex-wrap: wrap;
-}
+		.btn-download:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 0 40px var(--accent-glow);
+		}
 
-.hero-text {
-    flex: 1 1 500px;
-}
+		/* Галерея з кастомним скролом */
+        .gallery-scroll {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+            
+            /* Для Firefox */
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) rgba(255, 255, 255, 0.05);
+        }
 
-.hero-text h1 {
-    font-size: 44px;
-    margin-bottom: 20px;
-}
+        /* Стилізація скролбара для Chrome/Edge/Safari */
+        .gallery-scroll::-webkit-scrollbar {
+            height: 8px; /* Висота горизонтального скрола */
+        }
 
-.hero-cta {
-    flex: 0 0 auto;
-}
+        .gallery-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05); /* Фон доріжки */
+            border-radius: 4px;
+        }
 
-.cta-btn {
-    display: inline-block;
-    padding: 16px 34px;
-    background: linear-gradient(90deg, #2563EB, #38BDF8);
-    border-radius: 12px;
-    font-weight: 600;
-    color: white;
-    box-shadow: 0 0 25px rgba(56,189,248,0.4);
-    transition: all 0.3s ease;
-}
+        .gallery-scroll::-webkit-scrollbar-thumb {
+            background-color: var(--accent); /* Колір повзунка (блакитний) */
+            border-radius: 4px;
+            border: 2px solid transparent; /* Відступ всередині */
+            background-clip: content-box;
+        }
 
-.cta-btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 40px rgba(56,189,248,0.6);
-}
+        .gallery-scroll::-webkit-scrollbar-thumb:hover {
+            background-color: #fff; /* Білий при наведенні */
+        }
 
-.grid-2 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-}
+		/* Стилі для скріншотів */
+		.screenshot-item {
+			flex: 0 0 260px;
+			/* Ширина скріншота */
+			height: 550px;
+			/* Висота скріншота */
+			border-radius: 16px;
+			border: 1px solid var(--border);
+			scroll-snap-align: center;
+			background-color: #1e293b;
+			/* Колір заглушки, поки немає картинки */
+			object-fit: cover;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+		}
 
-.screenshot {
-    width: 260px;
-    border-radius: 16px;
-    box-shadow: 0 0 25px rgba(56,189,248,0.25);
-}
-</style>
+		/* Стилі для лінків документації */
+		.doc-item {
+			display: flex;
+			justify-content: space-between;
+			padding: 16px;
+			background: rgba(255, 255, 255, 0.03);
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			text-decoration: none;
+			color: var(--text-dim);
+			transition: 0.3s;
+			margin-bottom: 10px;
+		}
+
+		.doc-item:hover {
+			border-color: var(--accent);
+			color: #fff;
+			background: rgba(255, 255, 255, 0.05);
+		}
+	</style>
 </head>
 
 <body>
 
-<header>
-    <div class="brand">OTB dev.</div>
-    <nav>
-        <a href="/" data-nav="home">Home</a>
-        <a href="/apps/" data-nav="apps">Apps</a>
-        <a id="lang-switch" href="#">UA</a>
-    </nav>
-</header>
+	<header class="site-header">
+		<div class="header-inner">
+			<div class="brand">OTB dev.</div>
+			<nav>
+				<a href="../../index.html" data-nav="home">Home</a>
+				<a href="../index.html" data-nav="apps" class="active">Apps</a>
+				<a id="lang-switch" href="../../uk/apps/ev-charge-pro/index.html">UA</a>
+			</nav>
+		</div>
+	</header>
 
-<section class="section">
-    <div class="card hero-card">
-        <div class="hero-inner">
+	<main>
+		<section class="section-sm">
+			<div class="container">
 
-            <div class="hero-text">
-                <h1>EV Charge Pro</h1>
-                <p>
-                    A precision charging calculator for electric vehicles and portable power stations.
-                    Estimate charging time, energy usage and total cost based on real-world parameters.
-                </p>
-            </div>
+				<div class="app-hero-card stack">
+					<h1>EV Charge Pro</h1>
+					<p style="max-width: 600px; margin: 0 auto; color: var(--text-dim); font-size: 18px;">
+						A precision charging calculator for electric vehicles and portable power stations.
+						Estimate charging time, energy usage and total cost based on real-world parameters.
+					</p>
 
-            <div class="hero-cta">
-                <a href="#" class="cta-btn">
-                    Closed Testing – Coming Soon
-                </a>
-            </div>
+					<div>
+						<a href="#" class="btn-download">
+							Download App
+							<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+								viewBox="0 0 24 24">
+								<path d="M12 5v14M5 12l7 7 7-7" />
+							</svg>
+						</a>
+					</div>
+				</div>
 
-        </div>
-    </div>
-</section>
+				<div class="stack" style="margin-bottom: 80px;">
+					<h2 style="text-align: center; margin-bottom: 30px;">Interface Preview</h2>
 
-<section class="section">
-    <div class="card">
-        <h2>What It Calculates</h2>
-        <ul>
-            <li>Charging time (based on current & target battery level)</li>
-            <li>Total energy added (kWh)</li>
-            <li>Estimated charging cost</li>
-            <li>Remaining battery reserve</li>
-        </ul>
-    </div>
-</section>
+					<div class="gallery-scroll">
+						<img src="./images/B1 (7).jpg" alt="B1 (7)" class="screenshot-item">
+						<img src="./images/B1 (6).jpg" alt="B1 (6)" class="screenshot-item">
+						<img src="./images/B1 (5).jpg" alt="B1 (5)" class="screenshot-item">
+						<img src="./images/B1 (4).jpg" alt="B1 (4)" class="screenshot-item">
+						<img src="./images/B1 (3).jpg" alt="B1 (3)" class="screenshot-item">
+						<img src="./images/B1 (2).jpg" alt="B1 (2)" class="screenshot-item">
+						<img src="./images/B1 (1).jpg" alt="B1 (1)" class="screenshot-item">
+					</div>
+				</div>
 
-<section class="section">
-    <div class="card">
-        <h2>Calculation Engine</h2>
-        <p>
-            The algorithm uses manufacturer-based battery capacity ranges,
-            charger power limits, electricity price and charging efficiency
-            to provide realistic and practical estimations.
-        </p>
-    </div>
-</section>
+				<div class="layout-main">
 
-<section class="section">
-    <div class="card">
-        <h2>Charging Modes</h2>
-        <ul>
-            <li>AC Grid charging</li>
-            <li>Solar input</li>
-            <li>Combined mode</li>
-            <li>Portable station charging</li>
-        </ul>
-    </div>
-</section>
+					<div class="card stack">
+						<h2>Features</h2>
+						<ul
+							style="padding-left: 20px; color: var(--text-dim); display: flex; flex-direction: column; gap: 12px;">
+							<li><strong>Smart Session Tracking:</strong> Automatically log every charge.</li>
+							<li><strong>Cost Calculator:</strong> Real-time cost estimation based on tariffs.</li>
+							<li><strong>Battery Health:</strong> Analytics to prolong your battery life.</li>
+							<li><strong>Export Data:</strong> CSV export for accounting.</li>
+						</ul>
 
-<footer>
-© 2026 OTB dev.
-</footer>
+						<h2 style="margin-top: 20px;">Calculation Engine</h2>
+						<p>
+							The algorithm uses manufacturer-based battery capacity ranges,
+							charger power limits, electricity price and charging efficiency.
+						</p>
+					</div>
 
-<script src="/js/animations.js"></script>
+					<aside class="side-stack">
+
+						<div class="card stack">
+							<h3>Legal Documents</h3>
+							<p>Please review our policies regarding data usage.</p>
+
+							<div>
+								<a href="./privacy-policy.html" class="doc-item">
+									<span>Privacy Policy</span>
+									<span>→</span>
+								</a>
+								<a href="./terms.html" class="doc-item">
+									<span>Terms & Conditions</span>
+									<span>→</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="card stack">
+							<h3>App Info</h3>
+							<p>Version: <strong style="color: #fff;">1.0.2 (Beta)</strong></p>
+							<p>Updated: <strong style="color: #fff;">Feb 2026</strong></p>
+						</div>
+
+					</aside>
+
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="container">
+			<p>© 2026 OTB dev. All rights reserved.</p>
+		</div>
+	</footer>
+
+	<script src="../../js/animations.js"></script>
 </body>
+
 </html>

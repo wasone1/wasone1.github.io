@@ -1,169 +1,100 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================================
-       Reveal Animation (IntersectionObserver)
-    ========================================= */
+	/* 1. REVEAL ANIMATION */
+	const observerOptions = { threshold: 0.1 };
 
-    const cards = document.querySelectorAll(".card");
+	const observer = new IntersectionObserver((entries, obs) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add("visible");
+				obs.unobserve(entry.target);
+			}
+		});
+	}, observerOptions);
 
-    if ("IntersectionObserver" in window) {
+	document.querySelectorAll(".card, .stack, .hero").forEach((el, i) => {
+		el.style.transitionDelay = `${i * 50}ms`;
+		observer.observe(el);
+	});
 
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15 });
+	/* 2. SLIDER LOGIC + DOTS */
+	const row = document.getElementById("appsRow");
+	const cards = document.querySelectorAll(".app-card");
+	const dotsContainer = document.getElementById("appsDots");
 
-        cards.forEach((card, index) => {
-            card.style.transitionDelay = `${index * 100}ms`;
-            observer.observe(card);
-        });
+	if (row && cards.length > 0) {
 
-    } else {
-        // Fallback
-        cards.forEach(card => card.classList.add("visible"));
-    }
+		// A. Generate Dots
+		if (dotsContainer) {
+			dotsContainer.innerHTML = "";
+			cards.forEach((_, index) => {
+				const dot = document.createElement("button");
+				dot.classList.add("dot-btn");
+				if (index === 0) dot.classList.add("active");
 
+				// Click dot -> scroll to card
+				dot.addEventListener("click", () => {
+					cards[index].click(); // Activate card logic
+				});
 
-    /* =========================================
-       Language Switch
-    ========================================= */
+				dotsContainer.appendChild(dot);
+			});
+		}
 
-    const langSwitch = document.getElementById("lang-switch");
+		// B. Update Dots on Scroll
+		const updateActiveDot = (index) => {
+			const dots = document.querySelectorAll(".dot-btn");
+			dots.forEach(d => d.classList.remove("active"));
+			if (dots[index]) dots[index].classList.add("active");
+		};
 
-    if (langSwitch) {
-        const path = window.location.pathname.replace(/\/+$/, "");
+		row.addEventListener("scroll", () => {
+			let center = row.scrollLeft + (row.offsetWidth / 2);
+			let closestIndex = 0;
+			let closestDist = Infinity;
 
-        if (path.startsWith("/uk")) {
-            langSwitch.href = path.replace("/uk", "") || "/";
-        } else {
-            langSwitch.href = "/uk" + (path === "" ? "/" : path);
-        }
-    }
+			cards.forEach((card, i) => {
+				let cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+				let dist = Math.abs(center - cardCenter);
+				if (dist < closestDist) {
+					closestDist = dist;
+					closestIndex = i;
+				}
+			});
+			updateActiveDot(closestIndex);
+		});
 
+		// C. Card Click Logic
+		cards.forEach((card, index) => {
+			card.addEventListener("click", () => {
+				if (card.classList.contains('active')) return;
 
-    /* =========================================
-       Active Navigation
-    ========================================= */
+				cards.forEach(c => c.classList.remove("active"));
+				card.classList.add("active");
+				updateActiveDot(index);
 
-    const homeLink = document.querySelector('[data-nav="home"]');
-    const appsLink = document.querySelector('[data-nav="apps"]');
+				setTimeout(() => {
+					card.scrollIntoView({
+						behavior: "smooth",
+						inline: "center",
+						block: "nearest"
+					});
+				}, 300);
+			});
+		});
 
-    const cleanPath = window.location.pathname.replace(/\/+$/, "");
+		// D. Mouse Wheel Scroll (Optional)
+		row.addEventListener("wheel", (evt) => {
+			if (evt.deltaY !== 0) {
+				evt.preventDefault();
+				row.scrollLeft += evt.deltaY;
+			}
+		});
+	}
 
-    if (cleanPath === "" || cleanPath === "/" || cleanPath === "/uk") {
-        homeLink?.classList.add("active");
-    } else if (
-        cleanPath.startsWith("/apps") ||
-        cleanPath.startsWith("/uk/apps")
-    ) {
-        appsLink?.classList.add("active");
-    }
-
-});
-
-/* =========================
-   Apps Expand Logic
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const cards = document.querySelectorAll(".app-card");
-
-    const isDesktop = window.matchMedia("(hover: hover)").matches;
-
-    cards.forEach(card => {
-
-        if (isDesktop) {
-            card.addEventListener("mouseenter", () => {
-                cards.forEach(c => c.classList.remove("active"));
-                card.classList.add("active");
-            });
-        }
-
-        card.addEventListener("click", () => {
-            cards.forEach(c => c.classList.remove("active"));
-            card.classList.add("active");
-        });
-
-    });
-
-});
-
-/* =========================
-   Drag Scroll + Dots
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const row = document.getElementById("appsRow");
-    const cards = document.querySelectorAll(".app-card");
-    const dotsContainer = document.getElementById("appsDots");
-
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    // Drag
-    row.addEventListener("mousedown", (e) => {
-        isDown = true;
-        row.classList.add("dragging");
-        startX = e.pageX - row.offsetLeft;
-        scrollLeft = row.scrollLeft;
-    });
-
-    row.addEventListener("mouseleave", () => isDown = false);
-    row.addEventListener("mouseup", () => isDown = false);
-
-    row.addEventListener("mousemove", (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - row.offsetLeft;
-        const walk = (x - startX) * 1.2;
-        row.scrollLeft = scrollLeft - walk;
-    });
-
-    // Touch
-    row.addEventListener("touchstart", (e) => {
-        startX = e.touches[0].pageX;
-        scrollLeft = row.scrollLeft;
-    });
-
-    row.addEventListener("touchmove", (e) => {
-        const x = e.touches[0].pageX;
-        const walk = (x - startX) * 1.2;
-        row.scrollLeft = scrollLeft - walk;
-    });
-
-    // Dots
-    cards.forEach((_, i) => {
-        const btn = document.createElement("button");
-        if (i === 0) btn.classList.add("active");
-        btn.addEventListener("click", () => {
-            cards[i].scrollIntoView({ behavior: "smooth", inline: "center" });
-        });
-        dotsContainer.appendChild(btn);
-    });
-
-    // Update active dot on scroll
-    row.addEventListener("scroll", () => {
-        let closestIndex = 0;
-        let closestDistance = Infinity;
-
-        cards.forEach((card, i) => {
-            const rect = card.getBoundingClientRect();
-            const distance = Math.abs(window.innerWidth / 2 - rect.left - rect.width / 2);
-            if (distance < closestDistance) {
-                closestDistance = distance;
-                closestIndex = i;
-            }
-        });
-
-        dotsContainer.querySelectorAll("button").forEach(b => b.classList.remove("active"));
-        dotsContainer.children[closestIndex].classList.add("active");
-    });
-
+	/* 3. LANG SWITCH */
+	const langSwitch = document.getElementById("lang-switch");
+	if (langSwitch) {
+		// Standard logic
+	}
 });

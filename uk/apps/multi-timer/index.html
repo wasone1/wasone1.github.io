@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Multi Timer – Одночасні таймери</title>
+	<meta name="description"
+		content="Запускайте безліч таймерів одночасно. Створюйте власні пресети для кухні, тренувань та продуктивності.">
+
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../../../css/style.css">
+
+	<style>
+		/* Стилістика Multi Timer (Темно-зелена) */
+		body {
+			--accent: #123524;
+			--accent-light: #2E8B57;
+			--accent-glow: rgba(46, 139, 87, 0.4);
+		}
+
+		.app-hero-card {
+			background: radial-gradient(circle at top, var(--accent-glow), transparent 70%);
+			border: 1px solid var(--border);
+			border-top-color: var(--accent-light);
+			border-radius: 24px;
+			padding: 60px 20px;
+			text-align: center;
+			margin-bottom: 60px;
+		}
+
+		.btn-download {
+			display: inline-flex;
+			align-items: center;
+			gap: 12px;
+			background: var(--accent-light);
+			color: #fff;
+			padding: 18px 36px;
+			border-radius: 12px;
+			font-weight: 700;
+			text-decoration: none;
+			margin-top: 32px;
+			box-shadow: 0 0 20px var(--accent-glow);
+			transition: 0.3s ease;
+		}
+
+		.btn-download:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 0 40px var(--accent-glow);
+			background: #3CB371;
+		}
+
+		.gallery-scroll {
+			display: flex;
+			gap: 20px;
+			overflow-x: auto;
+			padding-bottom: 20px;
+			scroll-snap-type: x mandatory;
+			scrollbar-width: thin;
+			scrollbar-color: var(--accent-light) rgba(255, 255, 255, 0.05);
+		}
+
+		.gallery-scroll::-webkit-scrollbar {
+			height: 8px;
+		}
+
+		.gallery-scroll::-webkit-scrollbar-track {
+			background: rgba(255, 255, 255, 0.05);
+			border-radius: 4px;
+		}
+
+		.gallery-scroll::-webkit-scrollbar-thumb {
+			background-color: var(--accent-light);
+			border-radius: 4px;
+			border: 2px solid transparent;
+			background-clip: content-box;
+		}
+
+		.screenshot-item {
+			flex: 0 0 500px;
+			/* Збільшуємо ширину (було 260px) */
+			height: 280px;
+			/* Зменшуємо висоту (було 550px) */
+			border-radius: 16px;
+			border: 1px solid var(--border);
+			scroll-snap-align: center;
+			background-color: #0d1f16;
+			object-fit: cover;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+			transition: transform 0.3s ease;
+		}
+
+		/* Адаптація для мобільних пристроїв */
+		@media (max-width: 600px) {
+			.screenshot-item {
+				flex: 0 0 85vw;
+				/* На телефонах скріншот майже на весь екран */
+				height: auto;
+				aspect-ratio: 16 / 9;
+				/* Тримаємо пропорцію 16:9 */
+			}
+		}
+
+		/* Документи */
+		.doc-item {
+			display: flex;
+			justify-content: space-between;
+			padding: 16px;
+			background: rgba(255, 255, 255, 0.03);
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			text-decoration: none;
+			color: var(--text-dim);
+			transition: 0.3s;
+			margin-bottom: 10px;
+		}
+
+		.doc-item:hover {
+			border-color: var(--accent-light);
+			color: #fff;
+			background: rgba(255, 255, 255, 0.05);
+		}
+	</style>
+</head>
+
+<body>
+
+	<header class="site-header">
+		<div class="header-inner">
+			<div class="brand">OTB dev.</div>
+			<nav>
+				<a href="../../index.html" data-nav="home">Головна</a>
+				<a href="../index.html" data-nav="apps" class="active">Додатки</a>
+				<a id="lang-switch" href="../../../apps/multi-timer/index.html">EN</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="section-sm">
+			<div class="container">
+
+				<div class="app-hero-card stack">
+					<div class="app-icon"
+						style="background: linear-gradient(135deg, #123524, #2E8B57); margin: 0 auto 24px; border-radius: 24px; width: 100px; height: 100px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+					</div>
+
+					<h1>Multi Timer</h1>
+					<p style="max-width: 600px; margin: 0 auto; color: var(--text-dim); font-size: 18px;">
+						Запускайте необмежену кількість таймерів одночасно. Створюйте, називайте та зберігайте власні
+						пресети для готування, спорту чи роботи.
+					</p>
+
+					<div>
+						<a href="#" class="btn-download">
+							Приєднатися до Beta
+							<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+								viewBox="0 0 24 24">
+								<path d="M12 5v14M5 12l7 7 7-7" />
+							</svg>
+						</a>
+					</div>
+				</div>
+
+				<div class="stack" style="margin-bottom: 80px;">
+					<h2 style="text-align: center; margin-bottom: 30px;">Інтерфейс додатка</h2>
+					<div class="gallery-scroll">
+						<img src="../../../apps/multi-timer/images/screen1.png" alt="Список таймерів"
+							class="screenshot-item">
+						<img src="../../../apps/multi-timer/images/screen2.png" alt="Активні таймери"
+							class="screenshot-item">
+						<img src="../../../apps/multi-timer/images/screen3.png" alt="Створення" class="screenshot-item">
+						<img src="../../../apps/multi-timer/images/screen4.png" alt="Налаштування"
+							class="screenshot-item">
+					</div>
+				</div>
+
+				<div class="layout-main">
+
+					<div class="card stack">
+						<h2>Можливості</h2>
+						<ul
+							style="padding-left: 20px; color: var(--text-dim); display: flex; flex-direction: column; gap: 15px;">
+							<li><strong>Необмежені таймери:</strong> Запускайте стільки, скільки потрібно одночасно.
+							</li>
+							<li><strong>Власні назви:</strong> "Макарони", "Планка", "Нарада" — називайте їх для
+								зручності.</li>
+							<li><strong>Бібліотека пресетів:</strong> Зберігайте часті таймери та запускайте їх одним
+								дотиком.</li>
+							<li><strong>Робота у фоні:</strong> Надійні сповіщення та звук, навіть коли додаток
+								закритий.</li>
+						</ul>
+
+						<h2 style="margin-top: 20px;">Сценарії використання</h2>
+						<p style="color: var(--text-dim);">
+							Ідеально підходить для кухні (кілька страв), інтервальних тренувань, навчання (Pomodoro) або
+							лабораторних експериментів.
+						</p>
+					</div>
+
+					<aside class="side-stack">
+
+						<div class="card stack">
+							<h3>Документація</h3>
+							<p>Правила та умови (англ.)</p>
+
+							<div>
+								<a href="../../../apps/multi-timer/privacy-policy.html" class="doc-item">
+									<span>Privacy Policy</span>
+									<span>→</span>
+								</a>
+								<a href="../../../apps/multi-timer/terms.html" class="doc-item">
+									<span>Terms & Conditions</span>
+									<span>→</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="card stack">
+							<h3>Статус</h3>
+							<p>Стан: <strong style="color: #fff;">Передреліз</strong></p>
+							<p>Версія: <strong style="color: #fff;">0.5.0 (Alpha)</strong></p>
+						</div>
+					</aside>
+
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="container">
+			<p>© 2026 OTB dev. Всі права захищено.</p>
+		</div>
+	</footer>
+
+	<script src="../../../js/animations.js"></script>
+</body>
+
+</html>
