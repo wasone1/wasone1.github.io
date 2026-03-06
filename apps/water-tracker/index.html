@@ -4,87 +4,233 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Water Tracker | OTB dev.</title>
+	<title>Water Tracker – Hydration & Health</title>
+	<meta name="description"
+		content="An app designed to easily monitor your daily water intake and maintain proper hydration.">
+
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="../../css/style.css">
+
+	<style>
+		/* Налаштування кольорів САМЕ ДЛЯ WATER TRACKER */
+		body {
+			--accent: #00838F;
+			/* Головний колір додатка (Cyan 800) */
+			--accent-glow: rgba(0, 188, 212, 0.15);
+			/* Світіння (Cyan 500) */
+		}
+
+		/* Hero блок з фоновим світінням додатка */
+		.app-hero-card {
+			background: radial-gradient(circle at top, var(--accent-glow), transparent 70%);
+			border: 1px solid var(--border);
+			border-top-color: var(--accent);
+			border-radius: 24px;
+			padding: 60px 20px;
+			text-align: center;
+			margin-bottom: 60px;
+		}
+
+		/* Кнопка завантаження в колір додатка */
+		.btn-download {
+			display: inline-flex;
+			align-items: center;
+			gap: 12px;
+			background: var(--accent);
+			color: #fff;
+			/* Білий текст для темного фону кнопки */
+			padding: 18px 36px;
+			border-radius: 12px;
+			font-weight: 700;
+			text-decoration: none;
+			margin-top: 32px;
+			box-shadow: 0 0 20px var(--accent-glow);
+			transition: 0.3s ease;
+		}
+
+		.btn-download:hover:not(.btn-disabled) {
+			transform: translateY(-2px);
+			box-shadow: 0 0 40px var(--accent-glow);
+		}
+
+		/* Глуха кнопка для пре-тесту */
+		.btn-disabled {
+			opacity: 0.6;
+			cursor: not-allowed;
+		}
+
+		/* Галерея з кастомним скролом */
+		.gallery-scroll {
+			display: flex;
+			gap: 20px;
+			overflow-x: auto;
+			padding-bottom: 20px;
+			scroll-snap-type: x mandatory;
+
+			scrollbar-width: thin;
+			scrollbar-color: var(--accent) rgba(255, 255, 255, 0.05);
+		}
+
+		.gallery-scroll::-webkit-scrollbar {
+			height: 8px;
+		}
+
+		.gallery-scroll::-webkit-scrollbar-track {
+			background: rgba(255, 255, 255, 0.05);
+			border-radius: 4px;
+		}
+
+		.gallery-scroll::-webkit-scrollbar-thumb {
+			background-color: var(--accent);
+			border-radius: 4px;
+			border: 2px solid transparent;
+			background-clip: content-box;
+		}
+
+		.gallery-scroll::-webkit-scrollbar-thumb:hover {
+			background-color: #fff;
+		}
+
+		/* Стилі для скріншотів */
+		.screenshot-item {
+			flex: 0 0 260px;
+			height: 550px;
+			border-radius: 16px;
+			border: 1px solid var(--border);
+			scroll-snap-align: center;
+			background-color: #1e293b;
+			object-fit: cover;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+		}
+
+		/* Стилі для лінків документації */
+		.doc-item {
+			display: flex;
+			justify-content: space-between;
+			padding: 16px;
+			background: rgba(255, 255, 255, 0.03);
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			text-decoration: none;
+			color: var(--text-dim);
+			transition: 0.3s;
+			margin-bottom: 10px;
+		}
+
+		.doc-item:hover {
+			border-color: var(--accent);
+			color: #fff;
+			background: rgba(255, 255, 255, 0.05);
+		}
+	</style>
 </head>
 
-<body style="--accent: #00838F;">
+<body>
 
-	<main class="layout-main">
+	<header class="site-header">
+		<div class="header-inner">
+			<div class="brand">OTB dev.</div>
+			<nav>
+				<a href="../../index.html" data-nav="home">Home</a>
+				<a href="../index.html" data-nav="apps" class="active">Apps</a>
+				<a id="lang-switch" href="../../uk/apps/water-tracker/index.html">UA</a>
+			</nav>
+		</div>
+	</header>
 
-		<section class="app-hero">
-			<div class="hero-content">
-				<div class="app-header-info">
-					<img src="icon.png" alt="Water Tracker" class="hero-app-icon">
+	<main>
+		<section class="section-sm">
+			<div class="container">
+
+				<div class="app-hero-card stack">
+					<h1>Water Tracker</h1>
+					<p style="max-width: 600px; margin: 0 auto; color: var(--text-dim); font-size: 18px;">
+						An app designed to easily monitor your daily water intake. It helps maintain proper hydration,
+						motivates a healthy lifestyle, and keeps your body energized by replenishing your water balance
+						on time.
+					</p>
+
 					<div>
-						<h1>Water Tracker</h1>
-						<div class="app-meta">
-							<span class="badge badge-status">Pre-release</span>
-							<span class="badge badge-platform">Android</span>
-						</div>
+						<a href="#" class="btn-download btn-disabled" onclick="return false;">
+							Pre-test
+							<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+								viewBox="0 0 24 24">
+								<path d="M12 5v14M5 12l7 7 7-7" />
+							</svg>
+						</a>
 					</div>
 				</div>
-				<p class="app-description">
-					An app designed to easily monitor your daily water intake. It helps maintain proper hydration,
-					motivates a healthy lifestyle, and keeps your body energized by replenishing your water balance on
-					time.
-				</p>
-				<div class="hero-actions">
-					<a href="#" class="btn btn-primary btn-disabled" onclick="return false;"
-						style="opacity: 0.6; cursor: not-allowed;">Pre-test</a>
+
+				<div class="stack" style="margin-bottom: 80px;">
+					<h2 style="text-align: center; margin-bottom: 30px;">Interface Preview</h2>
+
+					<div class="gallery-scroll">
+						<img src="./images/screen1.jpg" alt="Screen 1" class="screenshot-item">
+						<img src="./images/screen2.jpg" alt="Screen 2" class="screenshot-item">
+						<img src="./images/screen3.jpg" alt="Screen 3" class="screenshot-item">
+						<img src="./images/screen4.jpg" alt="Screen 4" class="screenshot-item">
+					</div>
+				</div>
+
+				<div class="layout-main">
+
+					<div class="card stack">
+						<h2>Features</h2>
+						<ul
+							style="padding-left: 20px; color: var(--text-dim); display: flex; flex-direction: column; gap: 12px;">
+							<li><strong>Flexible Tracking & Goals:</strong> Set custom daily targets and log your
+								hydration effortlessly.</li>
+							<li><strong>Smart Notifications:</strong> Customizable reminders so you never forget to
+								drink water.</li>
+							<li><strong>History & Achievements:</strong> Track your progress, review history, and earn
+								motivational rewards.</li>
+							<li><strong>Reliability & Convenience:</strong> Data backup (save/load functionality) and
+								multilingual interface support.</li>
+						</ul>
+
+						<h2 style="margin-top: 20px;">Health & Motivation</h2>
+						<p>
+							Control over your water intake allows you to independently set goals, maintain body tone,
+							and stay refreshed throughout the day.
+						</p>
+					</div>
+
+					<aside class="side-stack">
+
+						<div class="card stack">
+							<h3>Legal Documents</h3>
+							<p>Please review our policies regarding data usage.</p>
+
+							<div>
+								<a href="./privacy-policy.html" class="doc-item">
+									<span>Privacy Policy</span>
+									<span>→</span>
+								</a>
+								<a href="./terms.html" class="doc-item">
+									<span>Terms & Conditions</span>
+									<span>→</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="card stack">
+							<h3>App Info</h3>
+							<p>Status: <strong style="color: #fff;">Pre-release</strong></p>
+							<p>Updated: <strong style="color: #fff;">Mar 2026</strong></p>
+						</div>
+
+					</aside>
+
 				</div>
 			</div>
 		</section>
-
-		<section class="screenshots-section">
-			<h2>Screenshots</h2>
-			<div class="screenshot-track">
-				<img src="screen1.jpg" alt="Water Tracker Screen 1" class="screen-img">
-				<img src="screen2.jpg" alt="Water Tracker Screen 2" class="screen-img">
-				<img src="screen3.jpg" alt="Water Tracker Screen 3" class="screen-img">
-				<img src="screen4.jpg" alt="Water Tracker Screen 4" class="screen-img">
-			</div>
-		</section>
-
-		<section class="features-section">
-			<h2>Key Features</h2>
-			<div class="features-grid">
-				<div class="feature-card">
-					<h3>Flexible Tracking & Goals</h3>
-					<p>Set custom daily targets and log your hydration effortlessly.</p>
-				</div>
-				<div class="feature-card">
-					<h3>Smart Notifications</h3>
-					<p>Customizable reminders so you never forget to drink water.</p>
-				</div>
-				<div class="feature-card">
-					<h3>History & Achievements</h3>
-					<p>Track your progress, review history, and earn motivational rewards for hitting your goals.</p>
-				</div>
-				<div class="feature-card">
-					<h3>Reliability & Convenience</h3>
-					<p>Data backup (save/load functionality) and multilingual interface support.</p>
-				</div>
-			</div>
-		</section>
-
-		<section class="legal-docs-section">
-			<h2>Documentation</h2>
-			<div class="docs-grid">
-				<a href="privacy-policy.html" class="doc-card">
-					<div class="doc-icon">📄</div>
-					<h3>Privacy Policy</h3>
-					<p>Read our data protection policies.</p>
-				</a>
-				<a href="terms.html" class="doc-card">
-					<div class="doc-icon">⚖️</div>
-					<h3>Terms & Conditions</h3>
-					<p>Rules and guidelines for using the app.</p>
-				</a>
-			</div>
-		</section>
-
 	</main>
+
+	<footer>
+		<div class="container">
+			<p>© 2026 OTB dev. All rights reserved.</p>
+		</div>
+	</footer>
 
 	<script src="../../js/animations.js"></script>
 </body>
