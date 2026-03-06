@@ -4,88 +4,234 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Water Tracker | OTB dev.</title>
+	<title>Water Tracker – Гідратація та Здоров'я</title>
+	<meta name="description"
+		content="Додаток для зручного контролю за щоденним вживанням води та підтримки правильної гідратації.">
+
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="../../css/style.css">
+
+	<style>
+		/* Налаштування кольорів САМЕ ДЛЯ WATER TRACKER */
+		body {
+			--accent: #00838F;
+			/* Головний колір додатка (Cyan 800) */
+			--accent-glow: rgba(0, 188, 212, 0.15);
+			/* Світіння (Cyan 500) */
+		}
+
+		/* Hero блок з фоновим світінням додатка */
+		.app-hero-card {
+			background: radial-gradient(circle at top, var(--accent-glow), transparent 70%);
+			border: 1px solid var(--border);
+			border-top-color: var(--accent);
+			border-radius: 24px;
+			padding: 60px 20px;
+			text-align: center;
+			margin-bottom: 60px;
+		}
+
+		/* Кнопка завантаження в колір додатка */
+		.btn-download {
+			display: inline-flex;
+			align-items: center;
+			gap: 12px;
+			background: var(--accent);
+			color: #fff;
+			/* Білий текст для темного фону кнопки */
+			padding: 18px 36px;
+			border-radius: 12px;
+			font-weight: 700;
+			text-decoration: none;
+			margin-top: 32px;
+			box-shadow: 0 0 20px var(--accent-glow);
+			transition: 0.3s ease;
+		}
+
+		.btn-download:hover:not(.btn-disabled) {
+			transform: translateY(-2px);
+			box-shadow: 0 0 40px var(--accent-glow);
+		}
+
+		/* Глуха кнопка для пре-тесту */
+		.btn-disabled {
+			opacity: 0.6;
+			cursor: not-allowed;
+		}
+
+		/* Галерея з кастомним скролом */
+		.gallery-scroll {
+			display: flex;
+			gap: 20px;
+			overflow-x: auto;
+			padding-bottom: 20px;
+			scroll-snap-type: x mandatory;
+
+			scrollbar-width: thin;
+			scrollbar-color: var(--accent) rgba(255, 255, 255, 0.05);
+		}
+
+		.gallery-scroll::-webkit-scrollbar {
+			height: 8px;
+		}
+
+		.gallery-scroll::-webkit-scrollbar-track {
+			background: rgba(255, 255, 255, 0.05);
+			border-radius: 4px;
+		}
+
+		.gallery-scroll::-webkit-scrollbar-thumb {
+			background-color: var(--accent);
+			border-radius: 4px;
+			border: 2px solid transparent;
+			background-clip: content-box;
+		}
+
+		.gallery-scroll::-webkit-scrollbar-thumb:hover {
+			background-color: #fff;
+		}
+
+		/* Стилі для скріншотів */
+		.screenshot-item {
+			flex: 0 0 260px;
+			height: 550px;
+			border-radius: 16px;
+			border: 1px solid var(--border);
+			scroll-snap-align: center;
+			background-color: #1e293b;
+			object-fit: cover;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+		}
+
+		/* Стилі для лінків документації */
+		.doc-item {
+			display: flex;
+			justify-content: space-between;
+			padding: 16px;
+			background: rgba(255, 255, 255, 0.03);
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			text-decoration: none;
+			color: var(--text-dim);
+			transition: 0.3s;
+			margin-bottom: 10px;
+		}
+
+		.doc-item:hover {
+			border-color: var(--accent);
+			color: #fff;
+			background: rgba(255, 255, 255, 0.05);
+		}
+	</style>
 </head>
 
-<body style="--accent: #00838F;">
+<body>
 
-	<main class="layout-main">
+	<header class="site-header">
+		<div class="header-inner">
+			<div class="brand">OTB dev.</div>
+			<nav>
+				<a href="../../index.html" data-nav="home">Головна</a>
+				<a href="../index.html" data-nav="apps" class="active">Додатки</a>
+				<a id="lang-switch" href="../../apps/water-tracker/index.html">EN</a>
+			</nav>
+		</div>
+	</header>
 
-		<section class="app-hero">
-			<div class="hero-content">
-				<div class="app-header-info">
-					<img src="icon.png" alt="Water Tracker" class="hero-app-icon">
+	<main>
+		<section class="section-sm">
+			<div class="container">
+
+				<div class="app-hero-card stack">
+					<h1>Water Tracker</h1>
+					<p style="max-width: 600px; margin: 0 auto; color: var(--text-dim); font-size: 18px;">
+						Додаток для зручного контролю за щоденним вживанням води. Він допомагає підтримувати правильну
+						гідратацію,
+						мотивує до здорового способу життя та тримає організм у тонусі завдяки вчасному поповненню
+						водного балансу.
+					</p>
+
 					<div>
-						<h1>Water Tracker</h1>
-						<div class="app-meta">
-							<span class="badge badge-status">Пре-реліз</span>
-							<span class="badge badge-platform">Android</span>
-						</div>
+						<a href="#" class="btn-download btn-disabled" onclick="return false;">
+							Пре-тест
+							<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+								viewBox="0 0 24 24">
+								<path d="M12 5v14M5 12l7 7 7-7" />
+							</svg>
+						</a>
 					</div>
 				</div>
-				<p class="app-description">
-					Додаток для зручного контролю за щоденним вживанням води. Він допомагає підтримувати правильну
-					гідратацію, мотивує до
-					здорового способу життя та тримає організм у тонусі завдяки вчасному поповненню водного балансу.
-				</p>
-				<div class="hero-actions">
-					<a href="#" class="btn btn-primary btn-disabled" onclick="return false;"
-						style="opacity: 0.6; cursor: not-allowed;">Пре-тест</a>
+
+				<div class="stack" style="margin-bottom: 80px;">
+					<h2 style="text-align: center; margin-bottom: 30px;">Вигляд інтерфейсу</h2>
+
+					<div class="gallery-scroll">
+						<img src="./images/screen1.jpg" alt="Screen 1" class="screenshot-item">
+						<img src="./images/screen2.jpg" alt="Screen 2" class="screenshot-item">
+						<img src="./images/screen3.jpg" alt="Screen 3" class="screenshot-item">
+						<img src="./images/screen4.jpg" alt="Screen 4" class="screenshot-item">
+					</div>
+				</div>
+
+				<div class="layout-main">
+
+					<div class="card stack">
+						<h2>Ключові функції</h2>
+						<ul
+							style="padding-left: 20px; color: var(--text-dim); display: flex; flex-direction: column; gap: 12px;">
+							<li><strong>Гнучкий контроль та цілі:</strong> Самостійне визначення щоденних норм та
+								відстеження випитої рідини.</li>
+							<li><strong>Розумні сповіщення:</strong> Налаштування нагадувань, щоб вчасно поповнювати
+								водний баланс.</li>
+							<li><strong>Історія та досягнення:</strong> Відстежуйте свій прогрес, переглядайте історію
+								та заробляйте мотиваційні нагороди.</li>
+							<li><strong>Надійність та зручність:</strong> Резервне копіювання (збереження/завантаження
+								даних) та багатомовний інтерфейс.</li>
+						</ul>
+
+						<h2 style="margin-top: 20px;">Здоров'я та мотивація</h2>
+						<p>
+							Контроль за вживанням води дозволяє самостійно встановлювати цілі, підтримувати організм у
+							тонусі та відчувати бадьорість протягом усього дня.
+						</p>
+					</div>
+
+					<aside class="side-stack">
+
+						<div class="card stack">
+							<h3>Документація</h3>
+							<p>Будь ласка, ознайомтеся з нашими правилами щодо використання даних.</p>
+
+							<div>
+								<a href="./privacy-policy.html" class="doc-item">
+									<span>Політика конфіденційності</span>
+									<span>→</span>
+								</a>
+								<a href="./terms.html" class="doc-item">
+									<span>Умови використання</span>
+									<span>→</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="card stack">
+							<h3>Інфо про додаток</h3>
+							<p>Статус: <strong style="color: #fff;">Пре-реліз</strong></p>
+							<p>Оновлено: <strong style="color: #fff;">Бер 2026</strong></p>
+						</div>
+
+					</aside>
+
 				</div>
 			</div>
 		</section>
-
-		<section class="screenshots-section">
-			<h2>Скріншоти</h2>
-			<div class="screenshot-track">
-				<img src="screen1.jpg" alt="Water Tracker Screen 1" class="screen-img">
-				<img src="screen2.jpg" alt="Water Tracker Screen 2" class="screen-img">
-				<img src="screen3.jpg" alt="Water Tracker Screen 3" class="screen-img">
-				<img src="screen4.jpg" alt="Water Tracker Screen 4" class="screen-img">
-			</div>
-		</section>
-
-		<section class="features-section">
-			<h2>Ключові функції</h2>
-			<div class="features-grid">
-				<div class="feature-card">
-					<h3>Гнучкий контроль та цілі</h3>
-					<p>Самостійне визначення щоденних норм та відстеження випитої рідини.</p>
-				</div>
-				<div class="feature-card">
-					<h3>Розумні сповіщення</h3>
-					<p>Налаштування нагадувань, щоб вчасно поповнювати водний баланс.</p>
-				</div>
-				<div class="feature-card">
-					<h3>Історія та досягнення</h3>
-					<p>Відстежуйте свій прогрес, переглядайте історію та заробляйте мотиваційні нагороди за досягнення
-						мет.</p>
-				</div>
-				<div class="feature-card">
-					<h3>Надійність та зручність</h3>
-					<p>Резервне копіювання (збереження/завантаження даних) та багатомовний інтерфейс.</p>
-				</div>
-			</div>
-		</section>
-
-		<section class="legal-docs-section">
-			<h2>Документація</h2>
-			<div class="docs-grid">
-				<a href="privacy-policy.html" class="doc-card">
-					<div class="doc-icon">📄</div>
-					<h3>Політика конфіденційності</h3>
-					<p>Ознайомтеся з нашими правилами захисту даних.</p>
-				</a>
-				<a href="terms.html" class="doc-card">
-					<div class="doc-icon">⚖️</div>
-					<h3>Умови використання</h3>
-					<p>Правила та рекомендації щодо використання додатка.</p>
-				</a>
-			</div>
-		</section>
-
 	</main>
+
+	<footer>
+		<div class="container">
+			<p>© 2026 OTB dev. Всі права захищені.</p>
+		</div>
+	</footer>
 
 	<script src="../../js/animations.js"></script>
 </body>
