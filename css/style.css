@@ -353,6 +353,65 @@ footer .container {
 	display: block;
 }
 
+/* --- Контакти у футері --- */
+.footer-socials {
+	display: flex;
+	justify-content: center;
+	gap: 16px;
+	margin-bottom: 24px;
+}
+
+.social-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.05);
+	color: var(--text-dim);
+	transition: 0.3s ease;
+	text-decoration: none;
+	border: 1px solid transparent;
+}
+
+.social-icon svg {
+	width: 22px;
+	height: 22px;
+	fill: currentColor;
+	transition: 0.3s ease;
+}
+
+/* Ефекти світіння брендовими кольорами при наведенні */
+.social-icon:hover {
+	transform: translateY(-4px);
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.social-icon.email:hover {
+	color: #ea4335;
+	border-color: #ea4335;
+	box-shadow: 0 5px 20px rgba(234, 67, 53, 0.3);
+}
+
+.social-icon.telegram:hover {
+	color: #2AABEE;
+	border-color: #2AABEE;
+	box-shadow: 0 5px 20px rgba(42, 171, 238, 0.3);
+}
+
+.social-icon.whatsapp:hover {
+	color: #25D366;
+	border-color: #25D366;
+	box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+}
+
+.social-icon.x-twitter:hover {
+	color: #ffffff;
+	border-color: #ffffff;
+	box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {
 	.header-inner {
