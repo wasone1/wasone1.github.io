@@ -45,6 +45,12 @@
 			transition: 0.3s ease;
 		}
 
+		/* Глуха кнопка для пре-тесту */
+		.btn-disabled {
+			opacity: 0.6;
+			cursor: not-allowed;
+		}
+
 		.btn-download:hover {
 			transform: translateY(-2px);
 			box-shadow: 0 0 40px var(--accent-glow);
@@ -153,7 +159,7 @@
 					</p>
 
 					<div>
-						<a href="#" class="btn-download">
+						<a href="#" class="btn-download btn-disabled" onclick="return false;">
 							Приєднатися до тестування
 							<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
 								viewBox="0 0 24 24">
