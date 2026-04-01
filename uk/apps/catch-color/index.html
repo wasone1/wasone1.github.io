@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CatchColor – Цифровий детектор кольору</title>
+	<meta name="description"
+		content="CatchColor — це ваш ідеальний цифровий детектор кольору та інструмент для підбору палітр для дизайнерів та художників.">
+
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../../../css/style.css">
+
+	<style>
+		body {
+			--accent: #8B5CF6;
+			/* Заміни на точний HEX з банера, якщо потрібно */
+			--accent-glow: rgba(139, 92, 246, 0.15);
+		}
+
+		.app-hero-card {
+			background: radial-gradient(circle at top, var(--accent-glow), transparent 70%);
+			border: 1px solid var(--border);
+			border-top-color: var(--accent);
+			border-radius: 24px;
+			padding: 60px 20px;
+			text-align: center;
+			margin-bottom: 60px;
+		}
+
+		.btn-download {
+			display: inline-flex;
+			align-items: center;
+			gap: 12px;
+			background: var(--accent);
+			color: #fff;
+			padding: 18px 36px;
+			border-radius: 12px;
+			font-weight: 700;
+			text-decoration: none;
+			margin-top: 32px;
+			box-shadow: 0 0 20px var(--accent-glow);
+			transition: 0.3s ease;
+		}
+
+		.btn-download:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 0 40px var(--accent-glow);
+		}
+
+		.gallery-scroll {
+			display: flex;
+			gap: 20px;
+			overflow-x: auto;
+			padding-bottom: 20px;
+			scroll-snap-type: x mandatory;
+			scrollbar-width: thin;
+			scrollbar-color: var(--accent) rgba(255, 255, 255, 0.05);
+		}
+
+		.gallery-scroll::-webkit-scrollbar {
+			height: 8px;
+		}
+
+		.gallery-scroll::-webkit-scrollbar-track {
+			background: rgba(255, 255, 255, 0.05);
+			border-radius: 4px;
+		}
+
+		.gallery-scroll::-webkit-scrollbar-thumb {
+			background-color: var(--accent);
+			border-radius: 4px;
+			border: 2px solid transparent;
+			background-clip: content-box;
+		}
+
+		.gallery-scroll::-webkit-scrollbar-thumb:hover {
+			background-color: #fff;
+		}
+
+		.screenshot-item {
+			flex: 0 0 260px;
+			height: 550px;
+			border-radius: 16px;
+			border: 1px solid var(--border);
+			scroll-snap-align: center;
+			background-color: #1e293b;
+			object-fit: cover;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+		}
+
+		.doc-item {
+			display: flex;
+			justify-content: space-between;
+			padding: 16px;
+			background: rgba(255, 255, 255, 0.03);
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			text-decoration: none;
+			color: var(--text-dim);
+			transition: 0.3s;
+			margin-bottom: 10px;
+		}
+
+		.doc-item:hover {
+			border-color: var(--accent);
+			color: #fff;
+			background: rgba(255, 255, 255, 0.05);
+		}
+	</style>
+</head>
+
+<body>
+
+	<header class="site-header">
+		<div class="header-inner">
+			<div class="brand">OTB dev.</div>
+			<nav>
+				<a href="../../index.html" data-nav="home">Головна</a>
+				<a href="../index.html" data-nav="apps" class="active">Додатки</a>
+				<a id="lang-switch" href="../../../apps/catch-color/index.html">EN</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="section-sm">
+			<div class="container">
+
+				<div class="app-hero-card stack">
+					<h1>CatchColor</h1>
+					<p style="max-width: 600px; margin: 0 auto; color: var(--text-dim); font-size: 18px;">
+						CatchColor — це ваш ідеальний цифровий детектор кольору та інструмент для підбору палітр.
+						Миттєво витягуйте кольори за допомогою живої камери або вибирайте їх з галереї.
+					</p>
+
+					<div>
+						<a href="https://play.google.com/apps/testing/com.otbdev.catchcolor" target="_blank" class="btn-download">
+							Тестування
+							<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+								viewBox="0 0 24 24">
+								<path d="M5 12h14M12 5l7 7-7 7" />
+							</svg>
+						</a>
+					</div>
+				</div>
+
+				<div class="stack" style="margin-bottom: 80px;">
+					<h2 style="text-align: center; margin-bottom: 30px;">Вигляд інтерфейсу</h2>
+					<div class="gallery-scroll">
+						<img src="../../../apps/catch-color/images/1.jpg" alt="Screen 1" class="screenshot-item">
+						<img src="../../../apps/catch-color/images/2.jpg" alt="Screen 2" class="screenshot-item">
+						<img src="../../../apps/catch-color/images/4.jpg" alt="Screen 3" class="screenshot-item">
+						<img src="../../../apps/catch-color/images/5.jpg" alt="Screen 4" class="screenshot-item">
+						<img src="../../../apps/catch-color/images/7.jpg" alt="Screen 5" class="screenshot-item">
+						<img src="../../../apps/catch-color/images/8.jpg" alt="Screen 6" class="screenshot-item">
+					</div>
+				</div>
+
+				<div class="layout-main">
+
+					<div class="card stack">
+						<h2> Основні функції</h2>
+						<ul
+							style="padding-left: 20px; color: var(--text-dim); display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;">
+							<li><strong>Жива піпетка з камери:</strong> Визначайте кольори в реальному часі через
+								камеру.</li>
+							<li><strong>Екстрактор кольору з фото:</strong> Завантажуйте зображення з галереї та
+								знаходьте точний відтінок.</li>
+							<li><strong>Професійні каталоги:</strong> Миттєво підбирайте колір до галузевих стандартів.
+							</li>
+							<li><strong>Точні значення:</strong> Отримуйте точні HEX-коди, готові до копіювання в один
+								клік.</li>
+							<li><strong>Чистий та інтуїтивний UI:</strong> Швидкий, без зайвого сміття та з підтримкою
+								темної теми.</li>
+						</ul>
+
+						<h2> Підтримувані каталоги</h2>
+						<ul
+							style="padding-left: 20px; color: var(--text-dim); display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;">
+							<li><strong>RAL Classic:</strong> Стандартні промислові кольори та покриття</li>
+							<li><strong>RAL Design:</strong> Розширена система Hue-Lightness-Chroma</li>
+							<li><strong>RAL Effect:</strong> Інноваційні промислові палітри</li>
+							<li><strong>P-Colors:</strong> Професійні відтінки</li>
+						</ul>
+
+						<h2>👑 CatchColor Pro</h2>
+						<p style="color: var(--text-dim); margin-bottom: 12px;">Покращіть свій робочий процес за
+							допомогою преміум-функцій для професіоналів:</p>
+						<ul
+							style="padding-left: 20px; color: var(--text-dim); display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;">
+							<li><strong>Повний доступ до каталогів:</strong> Розблокуйте бази RAL Design, RAL Effect та
+								P-Colors.</li>
+							<li><strong>Безлімітна історія:</strong> Зберігайте та в будь-який час переглядайте всі
+								відскановані кольори.</li>
+							<li><strong>Експорт даних:</strong> Легко експортуйте збережені палітри для зовнішніх
+								проєктів.</li>
+							<li><strong>100% без реклами:</strong> Насолоджуйтесь роботою без жодних переривань.</li>
+						</ul>
+
+						<h2 style="margin-top: 10px;">Чому CatchColor?</h2>
+						<p>
+							Припиніть вгадувати кольори на око — фіксуйте їх точно. CatchColor аналізує конкретний
+							піксель і надає вам найближчі збіги з професійних каталогів кольорів, разом із HEX-кодами та
+							офіційними назвами. Ідеально підходить для дизайну інтер'єрів, цифрових ілюстрацій,
+							фарбування та будівництва. Завантажте CatchColor сьогодні та знайдіть свій ідеальний колір!
+						</p>
+					</div>
+
+					<aside class="side-stack">
+
+						<div class="card stack">
+							<h3>Документація</h3>
+							<p>Будь ласка, ознайомтеся з нашими правилами щодо використання даних.</p>
+							<div>
+								<a href="../../../apps/catch-color/privacy-policy.html" class="doc-item">
+									<span>Політика конфіденційності</span>
+									<span>→</span>
+								</a>
+								<a href="../../../apps/catch-color/terms.html" class="doc-item">
+									<span>Умови використання</span>
+									<span>→</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="card stack">
+							<h3>Інфо про додаток</h3>
+							<p>Статус: <strong style="color: #fff;">Тестування</strong></p>
+							<p>Версія: <strong style="color: #fff;">1.0.0</strong></p>
+							<p>Оновлено: <strong style="color: #fff;">Квіт 2026</strong></p>
+						</div>
+
+					</aside>
+
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="container">
+			<div class="footer-socials">
+	
+				<a href="mailto:otb.ukraine@gmail.com" class="social-icon email" aria-label="Email"
+					title="Написати на Email">
+					<svg viewBox="0 0 24 24">
+						<path
+							d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+					</svg>
+				</a>
+	
+				<a href="https://t.me/otb_ua" target="_blank" class="social-icon telegram" aria-label="Telegram"
+					title="Написати в Telegram">
+					<svg viewBox="0 0 24 24">
+						<path
+							d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.04-.2-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z" />
+					</svg>
+				</a>
+	
+				<a href="https://wa.me/380501960352" target="_blank" class="social-icon whatsapp" aria-label="WhatsApp"
+					title="Написати у WhatsApp">
+					<svg viewBox="0 0 24 24">
+						<path
+							d="M12.031 0C5.394 0 0 5.394 0 12.031c0 2.223.582 4.394 1.685 6.29L.15 24l5.845-1.531c1.83.992 3.886 1.517 5.998 1.517 6.637 0 12.031-5.394 12.031-12.031S18.668 0 12.031 0zm0 21.996c-1.87 0-3.71-.502-5.316-1.455l-.382-.226-3.95 1.035 1.054-3.851-.248-.396C2.17 15.356 1.635 13.722 1.635 12.031c0-5.738 4.667-10.406 10.406-10.406 5.738 0 10.406 4.667 10.406 10.406s-4.668 10.365-10.416 10.365zM17.74 14.2c-.313-.156-1.85-.913-2.137-1.018-.287-.104-.495-.156-.704.156-.208.313-.807 1.018-.99 1.226-.182.209-.365.235-.678.079-1.25-.615-2.277-1.123-3.14-2.613-.235-.365.234-.339.539-.939.104-.209.052-.391-.026-.548-.078-.156-.704-1.695-.964-2.32-.252-.612-.513-.53-.704-.54-.182-.008-.391-.008-.599-.008-.208 0-.547.078-.834.391-.286.313-1.094 1.069-1.094 2.607 0 1.538 1.12 3.024 1.277 3.232.156.208 2.203 3.363 5.34 4.64.748.304 1.332.486 1.789.622.752.24 1.436.206 1.976.125.606-.091 1.85-.756 2.111-1.486.26-.73.26-1.355.182-1.486-.078-.13-.286-.208-.599-.364z" />
+					</svg>
+				</a>
+	
+				<a href="https://x.com/@OTB_Ukraine" target="_blank" class="social-icon x-twitter" aria-label="X (Twitter)"
+					title="Перейти в X (Twitter)">
+					<svg viewBox="0 0 24 24">
+						<path
+							d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.95H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+					</svg>
+				</a>
+	
+			</div>
+			<p>© 2026 OTB dev. All rights reserved.</p>
+		</div>
+	</footer>
+
+	<script src="../../../js/animations.js"></script>
+</body>
+
+</html>
